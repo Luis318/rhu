@@ -30,8 +30,8 @@
     <div class="masthead">
         <div class="masthead-content text-white">
             <div class="container-fluid px-4 px-lg-0">
-                <h1 class="fst-italic lh-1 mb-4">GRUPO 02 - ANF115</h1>
-                <p class="mb-5">Proyecto de ciclo de la materia de Análisis Financiero. Año 2022. Facultad de
+                <h1 class="fst-italic lh-1 mb-4">GRUPO 03 - RHU115</h1>
+                <p class="mb-5">Proyecto de ciclo de la materia de Recursos Humanos. Año 2023. Facultad de
                     Ingeniería. Escuela de Ingeniería de Sistemas Informáticos. Universidad de El
                     Salvador.</p>
             </div>
