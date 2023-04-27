@@ -20,17 +20,17 @@ class UserSeeder extends Seeder
 
         // Creando superusuarios
         $user = new User();
-        $user->name = "RM16034";
-        $user->email = "rm16034@ues.edu.sv";
+        $user->name = "AP17012";
+        $user->email = "ap17012@ues.edu.sv";
         $user->rol = 0;
-        $user->password = Hash::make("isaac34");
+        $user->password = Hash::make("ap17012");
         $user->save();
 
         $user = new User();
-        $user->name = "ML17018";
-        $user->email = "ml17018@ues.edu.sv";
+        $user->name = "AM17004";
+        $user->email = "am17004@ues.edu.sv";
         $user->rol = 0;
-        $user->password = Hash::make("roxana18");
+        $user->password = Hash::make("am17004");
         $user->save();
 
         $user = new User();
@@ -41,10 +41,10 @@ class UserSeeder extends Seeder
         $user->save();
 
         $user = new User();
-        $user->name = "RR16121";
-        $user->email = "rr16121@ues.edu.sv";
+        $user->name = "MP17001";
+        $user->email = "mp17001@ues.edu.sv";
         $user->rol = 0;
-        $user->password = Hash::make("carlos21");
+        $user->password = Hash::make("mp17001");
         $user->save();
 
         $user = new User();
