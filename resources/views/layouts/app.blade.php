@@ -63,7 +63,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="{{route('cuenta')}}">Cuentas</a>
+                        <a class="collapse-item" href="#">Cuentas</a>
                         <a class="collapse-item" href="#">Tipo de Cuentas</a>
                         <a class="collapse-item" href="#">Detalles Catalogo</a>
                     </div>
@@ -81,7 +81,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Analisis</h6>
-                        <a class="collapse-item" href="{{route('analisisPeriodo')}}">Analisis H y V</a>
+                        <a class="collapse-item" href="#">Analisis H y V</a>
                         {{-- <a class="collapse-item" href="utilities-border.html">Borders</a>
                         <a class="collapse-item" href="utilities-animation.html">Animations</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a> --}}
@@ -107,8 +107,8 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Documentos</h6>
-                        <a class="collapse-item" href="{{route('estados.index')}}">Estado de resultado</a>
-                        <a class="collapse-item" href="{{route('estados.index')}}">Balance general</a>
+                        <a class="collapse-item" href="#">Estado de resultado</a>
+                        <a class="collapse-item" href="#">Balance general</a>
                         {{-- <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
