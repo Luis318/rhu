@@ -94,7 +94,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Informes
+                Pretaciones Laborales
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -102,13 +102,14 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Documentos contables</span>
+                    <span>Prestaciones</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Documentos</h6>
-                        <a class="collapse-item" href="#">Estado de resultado</a>
-                        <a class="collapse-item" href="#">Balance general</a>
+                        <a class="collapse-item" href="{{ route('salarios') }}">Sueldos</a>
+                        <a class="collapse-item" href="#">Vacaciones</a>
+                        <a class="collapse-item" href="#">Aguinaldos </a>
                         {{-- <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
