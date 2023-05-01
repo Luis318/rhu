@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Empleados extends Model
 {
     use HasFactory;
+
+    public function descuentos(){
+        
+        return $this->hasMany(PrestacionesLaborales::class);
+    }
+
+
 }

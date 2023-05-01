@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('prestacion', 800);
             $table->decimal('monto', 8,2);
             $table->date('fechaPrestacion');
+            $table->foreignId('empleado_id')->constrained('empleados')->onDelete('cascade');
             $table->timestamps();
         });
     }

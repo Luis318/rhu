@@ -12,4 +12,9 @@ class PrestacionesController extends Controller
 
         return view('prestaciones.prestaciones');
     }
+    
+    public function caclularDescuentos(){
+        $empleados = Empleados::with('descuentos')->get();
+        dd($empleados);
+    }
 }
