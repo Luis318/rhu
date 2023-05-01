@@ -9,12 +9,12 @@ class PrestacionesController extends Controller
 {
     public function index(Request $request)
     {   
-        //dd($request->ajax());
+        //dd($request);
         if ($request->ajax()) {
             $data = Empleados::latest()->get();
             return Datatables::of($data)
                     ->addIndexColumn()
-                    ->addColumn('action', function($row){
+                    ->addColumn('acciones', function($row){
    
                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
    
@@ -22,7 +22,7 @@ class PrestacionesController extends Controller
     
                             return $btn;
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['acciones'])
                     ->make(true);
         }
         return view('prestaciones.salarios');

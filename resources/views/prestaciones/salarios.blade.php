@@ -10,17 +10,15 @@
                         <button type="button" name="create" id="create" class="btn btn-success"><i class="bi bi-plus-square"></i></button>
                     </div>
 
-                    <table class="table table-striped table-bordered emp_datatable">
+                    <table class="table table-striped table-bordered" id="emp_table">
                         <thead>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>DUI</th>
                             <th>Salario</th>
-                            <th>Action</th>
+                            <th>Acciones</th>
                         </thead>
-                        <tbody>
-
-                        </tbody>
+                       
                     </table>
 
                 </div>
@@ -29,15 +27,8 @@
     </div>
 
     <script>
-    $(document).ready(function(){
-
-        $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-        var table = $('.emp_datatable').DataTable({
+    $(document).ready(function() {
+        var tabla = new DataTable('#emp_table',{
             processing: true,
             serverSide: true,
             ajax: "{{ route('salarios') }}",
@@ -46,7 +37,7 @@
                 {data: 'primerApellido', name: 'Apellido'},
                 {data: 'dui', name: 'DUI'},
                 {data: 'salario_base', name: 'Salario'},
-                {data: 'action', orderable: false, searchable: false},
+                {data: 'acciones', orderable: false, searchable: false},
             ]
         });
     });
