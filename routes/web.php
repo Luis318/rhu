@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnalisisController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EmpresaController;
@@ -26,3 +27,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/indemnizacion-list', [App\Http\Controllers\IndemnizacionController::class, 'indemnizacionList'])->name('indemnizacion-list');
