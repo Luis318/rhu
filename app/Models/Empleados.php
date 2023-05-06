@@ -15,4 +15,5 @@ class Empleados extends Model
     }
 
 
+    
 }

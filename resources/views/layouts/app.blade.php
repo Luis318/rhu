@@ -19,6 +19,18 @@
         rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="{{ asset('sbadmin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    {{-- Icons --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    {{-- Jquery --}}
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+
+    {{-- Datatables --}}
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet"/> 
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
+
+
 </head>
 
 <body id="page-top">
@@ -94,7 +106,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Pretaciones Laborales
+                Prestaciones Laborales
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -106,10 +118,10 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Documentos</h6>
-                        <a class="collapse-item" href="{{ route('salarios') }}">Sueldos</a>
+                        <h6 class="collapse-header">Prestaciones</h6>
+                        <a class="collapse-item" href="{{ route('salarios') }}">Salarios</a>
                         <a class="collapse-item" href="#">Vacaciones</a>
-                        <a class="collapse-item" href="#">Aguinaldos </a>
+                        <a class="collapse-item" href="#">Aguinaldos</a>
                         {{-- <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
