@@ -10,7 +10,7 @@
                         <button type="button" name="create" id="create" class="btn btn-success"><i
                                 class="bi bi-plus-square"></i></button>
                     </div>
-                    <div class="container-xl col-12">
+                    <div class="container-xl">
                         <div class="card">
                             <div class="card-body">
                                 <table class="table table-striped table-bordered" id="emp_table">
@@ -19,7 +19,8 @@
                                         <th scope="col">Apellido</th>
                                         <th scope="col">DUI</th>
                                         <th scope="col">Salario</th>
-                                        <th scope="col">Descuento ISSS</th>
+                                        <th scope="col">ISSS</th>
+                                        <th scope="col">AFP</th>
                                         <th scope="col">Acciones</th>
                                     </thead>
 
@@ -56,7 +57,11 @@
                     },
                     {
                         data:'descuento_isss',
-                        name: 'Descuento ISSS'
+                        name: 'ISSS'
+                    },
+                    {
+                        data: 'descuento_afp',
+                        name: 'AFP'
                     },
                     {
                         data: 'acciones',

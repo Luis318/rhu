@@ -23,6 +23,7 @@ class PrestacionesController extends Controller
         if ($request->ajax()) {
             $data = Empleados::latest()->get();
             $descuentos = $this->calcularIsss();
+            $afp = $this->calcularAfp();
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('acciones', function($row){
@@ -36,6 +37,9 @@ class PrestacionesController extends Controller
                     ->addColumn('descuento_isss', function($row) use ($descuentos){
                         return number_format($descuentos[$row->id], 2,'.','');
                     })
+                    ->addColumn('descuento_afp', function($row) use ($afp){
+                        return number_format($afp[$row->id], 2,'.','');
+                    })
                     ->rawColumns(['acciones'])
                     ->make(true);
         }
@@ -43,6 +47,7 @@ class PrestacionesController extends Controller
         
     }
 
+    //Calcula el isss del empleado
     public function calcularIsss(){
 
         $salarios = $this->Empleados->getEmpleados();
@@ -55,5 +60,17 @@ class PrestacionesController extends Controller
         }
 
         return $descuentoIsss;
+    }
+
+    //calcula el afp del empleado
+    public function calcularAfp(){
+        $salarios = $this->Empleados->getEmpleados();
+        $descuentoAfp = [];
+
+        foreach($salarios as $empleado){
+            $descuento = $empleado->salario_base * 0.0725;
+            $descuentoAfp[$empleado->id]=$descuento;
+        }
+        return $descuentoAfp;
     }
 }
