@@ -58,6 +58,9 @@ class PrestacionesController extends Controller
     public function calcularIsss(){
 
         $salarios = $this->Empleados->getEmpleados();
+        if($salarios == null){
+            return null;
+        }
         $descuentoIsss = [];
 
         foreach($salarios as $empleado){
@@ -72,6 +75,9 @@ class PrestacionesController extends Controller
     //calcula el afp del empleado
     public function calcularAfp(){
         $salarios = $this->Empleados->getEmpleados();
+        if($salarios == null){
+            return null;
+        }
         $descuentoAfp = [];
 
         foreach($salarios as $empleado){
@@ -84,6 +90,9 @@ class PrestacionesController extends Controller
     //calculo de la renta 
     public function calculaRenta(){
         $salarios = $this->Empleados->getEmpleados();
+        if($salarios == null){
+            return null;
+        }
         $descuentoRenta = [];
 
         foreach($salarios as $empleado){

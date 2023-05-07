@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('evaluacion', 500);
             $table->decimal('calificacion', 3,2);
             $table->string('comentario', 800);
+            $table->foreignId('empleados_id')->constrained('empleados')->onDelete('cascade');
             $table->timestamps();
         });
     }

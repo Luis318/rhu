@@ -32,7 +32,6 @@ return new class extends Migration
             $table->string('estado');
             $table->string('email')->unique();
             $table->foreignId('areaPuesto_id')->constrained('area_puestos')->onDelete('cascade');
-            $table->foreignId('evaluaciones_id')->constrained('evaluacion_desempenios')->onDelete('cascade');
             $table->timestamps();
         });
     }
