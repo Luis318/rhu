@@ -3,11 +3,10 @@
 
 <div class="container-xl">
     <div class="row justify-content-center">
-        <h1>Empleados</h1>
-        <employee-table></employee-table>
+        <h1>Descuentos</h1>
+        
     </div>
 </div>
 
-<script src="{{ mix('js/employee-table.js') }}"></script>
 
 @endsection

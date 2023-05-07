@@ -19,6 +19,7 @@
                                         <th scope="col">Apellido</th>
                                         <th scope="col">DUI</th>
                                         <th scope="col">Salario</th>
+                                        <th scope="col">Descuento ISSS</th>
                                         <th scope="col">Acciones</th>
                                     </thead>
 
@@ -52,6 +53,10 @@
                     {
                         data: 'salario_base',
                         name: 'Salario'
+                    },
+                    {
+                        data:'descuento_isss',
+                        name: 'Descuento ISSS'
                     },
                     {
                         data: 'acciones',

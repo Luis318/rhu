@@ -14,6 +14,14 @@ class Empleados extends Model
         return $this->hasMany(PrestacionesLaborales::class);
     }
 
+    public function getEmpleados(){
+        $empleados = Empleados::latest()->get();
+        return $empleados;
+    }
 
+    public function getSalario(){
+        $salarioEmpleados = Empleados::all();
+        return $salarioEmpleados;
+    }
     
 }
