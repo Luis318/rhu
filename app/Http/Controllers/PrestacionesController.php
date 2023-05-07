@@ -29,20 +29,23 @@ class PrestacionesController extends Controller
                     ->addIndexColumn()
                     ->addColumn('acciones', function($row){
    
-                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
+                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct"><i class="bi bi-eye-fill"></i></a>';
    
-                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">Delete</a>';
+                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct"><i class="bi bi-trash-fill"></i></a>';
     
                             return $btn;
                     })
                     ->addColumn('descuento_isss', function($row) use ($descuentos){
-                        return number_format($descuentos[$row->id], 2,'.','');
+                        return number_format($descuentos[$row->id], 2,'.',',');
                     })
                     ->addColumn('descuento_afp', function($row) use ($afp){
-                        return number_format($afp[$row->id], 2,'.','');
+                        return number_format($afp[$row->id], 2,'.',',');
                     })
                     ->addColumn('descuento_renta', function($row) use ($renta){
-                        return number_format($renta[$row->id], 2,'.','');
+                        return number_format($renta[$row->id], 2,'.',',');
+                    })
+                    ->addcolumn('salario_base', function($row){
+                        return number_format($row->salario_base, 2, '.', ',');
                     })
                     ->rawColumns(['acciones'])
                     ->make(true);
