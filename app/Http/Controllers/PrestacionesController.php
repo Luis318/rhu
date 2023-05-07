@@ -24,6 +24,7 @@ class PrestacionesController extends Controller
             $data = Empleados::latest()->get();
             $descuentos = $this->calcularIsss();
             $afp = $this->calcularAfp();
+            $renta = $this->calculaRenta();
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('acciones', function($row){
@@ -39,6 +40,9 @@ class PrestacionesController extends Controller
                     })
                     ->addColumn('descuento_afp', function($row) use ($afp){
                         return number_format($afp[$row->id], 2,'.','');
+                    })
+                    ->addColumn('descuento_renta', function($row) use ($renta){
+                        return number_format($renta[$row->id], 2,'.','');
                     })
                     ->rawColumns(['acciones'])
                     ->make(true);
@@ -72,5 +76,31 @@ class PrestacionesController extends Controller
             $descuentoAfp[$empleado->id]=$descuento;
         }
         return $descuentoAfp;
+    }
+
+    //calculo de la renta 
+    public function calculaRenta(){
+        $salarios = $this->Empleados->getEmpleados();
+        $descuentoRenta = [];
+
+        foreach($salarios as $empleado){
+            if($empleado->salario_base >= 0.01 && $empleado->salario_base <= 487.60){
+                $descuentoRenta[$empleado->id] = 0;
+            }
+            elseif($empleado->salario_base >= 487.61 && $empleado->salario_base <= 642.85){
+                $descuentoRenta[$empleado->id] = (($empleado->salario_base - 487.60) * 0.1) + 17.48; 
+            }
+            elseif($empleado->salario_base >= 642.86 && $empleado->salario_base <= 915.81){
+                $descuentoRenta[$empleado->id] = (($empleado->salario_base - 642.85) * 0.1) + 32.70;
+            }
+            elseif($empleado->salario_base >= 915.82 && $empleado->salario_base <= 2058.67){
+                $descuentoRenta[$empleado->id] = (($empleado->salario_base - 915.81) * 0.2) + 60;
+            }
+            elseif($empleado->salario_base >= 2058.68){
+                $descuentoRenta[$empleado->id] = (($empleado->salario_base - 2058.67) * 0.3) + 288.57;
+            }
+        }
+
+        return $descuentoRenta;
     }
 }

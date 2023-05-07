@@ -21,6 +21,7 @@
                                         <th scope="col">Salario</th>
                                         <th scope="col">ISSS</th>
                                         <th scope="col">AFP</th>
+                                        <th scope="col">Renta</th>
                                         <th scope="col">Acciones</th>
                                     </thead>
 
@@ -62,6 +63,10 @@
                     {
                         data: 'descuento_afp',
                         name: 'AFP'
+                    },
+                    {
+                        data: 'descuento_renta',
+                        name: 'Renta'
                     },
                     {
                         data: 'acciones',
