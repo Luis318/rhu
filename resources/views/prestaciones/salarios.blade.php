@@ -39,43 +39,93 @@
             var tabla = new DataTable('#emp_table', {
                 processing: true,
                 serverSide: true,
+                searching: true,
+                serverSide: false,
+                autoWidth: false,
+                scrollX: true,
+                responsive: true,
                 ajax: "{{ route('salarios') }}",
                 columns: [{
                         data: 'primerNombre',
-                        name: 'Nombre'
+                        name: 'Nombre',
+                        footer: 'Nombre',
+                        //searchable: true
                     },
                     {
                         data: 'primerApellido',
-                        name: 'Apellido'
+                        name: 'Apellido',
+                        footer: 'Apellido',
+                        //searchable: true
                     },
                     {
                         data: 'dui',
-                        name: 'DUI'
+                        name: 'DUI',
+                        footer: 'DUI',
+                        //searchable: true
                     },
                     {
                         data: 'salario_base',
-                        name: 'Salario'
+                        name: 'Salario',
+                        footer: 'Salario',
+                        //searchable: true
                     },
                     {
-                        data:'descuento_isss',
-                        name: 'ISSS'
+                        data: 'descuento_isss',
+                        name: 'ISSS',
+                        footer: 'ISSS',
+                        //searchable: true
                     },
                     {
                         data: 'descuento_afp',
-                        name: 'AFP'
+                        name: 'AFP',
+                        footer: 'AFP',
+                        //searchable: true
                     },
                     {
                         data: 'descuento_renta',
-                        name: 'Renta'
+                        name: 'Renta',
+                        footer: 'Renta',
+                        //searchable: true
                     },
                     {
                         data: 'acciones',
                         orderable: false,
                         searchable: false
                     },
-                ]
+                ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                },
+                "order": [
+                    [0, "asc"]
+                ],
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "Todos"]
+                ],
+                // "dom": '1<"toolbar">frtip',
+                // initComplete: function(){
+                //     this.api().columns().every(function(){
+                //         var column = this;
+                //         var input = document.createElement("input");
+                //         input.setAttribute("type", "text");
+                //         console.log("break point1");
+                //         $(input).appendTo($(column.footer()).empty()).on('keyup', function(){
+
+                //             column.search($(this).val(), false, false, true).draw();
+                //             console.log("Break point2")
+                //         });
+                //     });
+                // }
+
             });
-            console.log(tabla);
+            $('#buscarT').on('input', function() {
+                // Obtener el valor del campo de búsqueda
+                var valor = $(this).val();
+
+                // Realizar la búsqueda en la tabla y actualizarla
+                tabla.search(valor).draw();
+            });
         });
     </script>
 @endsection

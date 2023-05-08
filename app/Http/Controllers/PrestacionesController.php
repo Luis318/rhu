@@ -47,6 +47,9 @@ class PrestacionesController extends Controller
                     ->addcolumn('salario_base', function($row){
                         return number_format($row->salario_base, 2, '.', ',');
                     })
+                    ->addcolumn('primerNombre', function($row){
+                        return $row->primerNombre.' '.$row->segundoNombre;
+                    })
                     ->rawColumns(['acciones'])
                     ->make(true);
         }
