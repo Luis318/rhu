@@ -29,3 +29,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/salarios', [App\Http\Controllers\PrestacionesController::class, 'index'])->name('salarios');
 Route::get('/descuentos', [App\Http\Controllers\PrestacionesController::class, 'caclularDescuentos'])->name('descuentos');
 
+Route::get('/boleta/{empleado_id}', [App\Http\Controllers\PrestacionesController::class, 'verBoleta'])->name('boleta_empleado');
+
+Route::get('/horasExtras', [App\Http\Controllers\PrestacionesController::class, 'viewHorasExtras'])->name('horas_extras');
+
+
