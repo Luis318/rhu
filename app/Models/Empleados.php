@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Empleados extends Model
 {
     use HasFactory;
+
+    public function descuentos(){
+        
+        return $this->hasMany(PrestacionesLaborales::class);
+    }
+
+    public function getEmpleados(){
+        $empleados = Empleados::latest()->get();
+        return $empleados;
+    }
+
+    public function getSalario(){
+        $salarioEmpleados = Empleados::all();
+        return $salarioEmpleados;
+    }
+    
 }

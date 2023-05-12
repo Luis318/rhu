@@ -29,10 +29,9 @@ return new class extends Migration
             $table->string('sexo',50);
             $table->string('telefono',20);
             $table->string('celular',20);
+            $table->string('estado');
             $table->string('email')->unique();
             $table->foreignId('areaPuesto_id')->constrained('area_puestos')->onDelete('cascade');
-            $table->foreignId('prestacionLaboral_id')->constrained('prestaciones_laborales')->onDelete('cascade');
-            $table->foreignId('evaluaciones_id')->constrained('evaluacion_desempenios')->onDelete('cascade');
             $table->timestamps();
         });
     }

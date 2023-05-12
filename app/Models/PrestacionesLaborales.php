@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class PrestacionesLaborales extends Model
 {
     use HasFactory;
+
+    public function empleado(){
+        return $this->belongTo(Empleado::class);
+    }
 }
