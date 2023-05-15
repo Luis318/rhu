@@ -7,7 +7,7 @@
                 <div class="row justify-content-center">
 
                     <div class="container d-flex justify-content-end mb-3">
-                        <a href="{{ route('generate-boletas') }}" name="boletas" id="boletas" class="btn btn-primary"><i
+                        <a href="{{ route('generate-boletas') }}" name="boletas" id="boletas" class="btn btn-primary mx-3"><i
                             class="">Imprimir boletas</i></a>
                         <a href="{{ route('generate-pdf') }}" name="create" id="create" class="btn btn-primary"><i
                                 class="">Imprimir planilla</i></a>
