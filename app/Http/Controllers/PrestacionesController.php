@@ -228,6 +228,7 @@ class PrestacionesController extends Controller
             //dd($isss[$empleado->id]);
             $afp = $this->calcularAfp();
             $renta = $this->calculaRenta();
+            $totalPagar = $this->calcularSalario();
             // $issE = $isss[$empleado->id];
             // $afpE = $afp[$empleado->id];
             // $rentaE = $renta[$empleado->id];
@@ -263,6 +264,8 @@ class PrestacionesController extends Controller
 
             $html .= '</ul>';
 
+            $html .= '<p><strong>Total a pagar: </strong>' . $totalPagar[$empleado->id] . '</p>';
+
 
             // Escribe el contenido HTML en la página actual
             $pdf::writeHTML($html, true, false, true, false);
@@ -276,5 +279,18 @@ class PrestacionesController extends Controller
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'inline; filename="empleados.pdf"'
         ]);
+    }
+
+    public function calcularSalario(){
+        $empleados = Empleados::all();
+        $horas = PrestacionesLaborales::all();
+        $isssEmp = $this->calcularIsss();
+        $afpEmp = $this->calcularAfp();
+        $renta = $this->calculaRenta();
+        $salario = [];
+        foreach($empleados as $empleado){
+            $salario[$empleado->id] = $empleado->salario_base - $isssEmp[$empleado->id] - $afpEmp[$empleado->id] - $renta[$empleado->id];
+        }
+        return $salario;
     }
 }
