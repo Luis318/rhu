@@ -42,10 +42,17 @@ class vacacionesController extends Controller
                 ->addcolumn('primerNombre', function ($row) {
                     return $row->primerNombre . ' ' . $row->segundoNombre;
                 })
+                ->addColumn('fechaContratacion', function ($row){
+                    return $row->fechaContratacion;
+                })
                 ->rawColumns(['acciones'])
                 ->make(true);
         }
         return view('vacaciones.vacacion');
 
+    }
+
+    public function calcularVacaciones(){
+        
     }
 }
