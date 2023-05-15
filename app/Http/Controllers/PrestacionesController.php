@@ -211,6 +211,10 @@ class PrestacionesController extends Controller
     //Generar PDF de la boleta de pago
     public function boletasMultiples()
     {
+        $isss = [];
+        $afp = [];
+        $renta = []; 
+
  // Obtén los datos de los empleados desde tu fuente de datos (por ejemplo, una base de datos)
  $empleados = Empleados::all();
 
@@ -219,14 +223,46 @@ class PrestacionesController extends Controller
 
  // Recorre los empleados y agrega una página para cada uno
  foreach ($empleados as $empleado) {
+   
+        $isss = $this->calcularIsss();
+        //dd($isss[$empleado->id]);
+        $afp = $this->calcularAfp();
+        $renta = $this->calculaRenta();
+        // $issE = $isss[$empleado->id];
+        // $afpE = $afp[$empleado->id];
+        // $rentaE = $renta[$empleado->id];
+        //dd($empleado->id);
      // Agrega una nueva página
      $pdf::AddPage();
 
      // Establece el contenido HTML para el empleado actual
      $html = '<div style="text-align: center;">';
-     $html .= '<h2>Bioleta de pago de ' . $empleado->primerNombre . '</h2>';
-     $html .= '<p>DUI: ' . $empleado->dui . '</p>';
-     $html .= '<p>Salario: ' . $empleado->salario_base . '</p>';
+     $html .= '<h1>Empresa RHU115</h1>';
+     $html .= '<h2>Boleta de pago de ' . $empleado->primerNombre . '</h2>';
+     $html .= '<h3>Informacion del empleado</h3>';
+     $html .= '<ul>';
+     $html .= '<li><strong>Nombre: </strong>'.$empleado->primerNombre.' '.$empleado->segundoNombre.' '.$empleado->primerApellido.' '.$empleado->segundoApellido.'</li>';
+     $html .= '<li><strong>DUI: </strong>'.$empleado->dui.'</li>';
+     $html .= '<li><strong>Salario base: </strong>'.$empleado->salario_base.'</li>';
+     $html .= '<li><strong>Email: </strong>'.$empleado->email.'</li>';
+     $html .= '<br>';
+     $html .= '</ul>';
+     $html .= '<h3>retenciones laborales</h3>';
+     $html .= '<ul>';
+     //foreach($empleados as $empleado){
+        if(isset($isss[$empleado->id])){
+            $html .= '<li><strong>ISSS: </strong>'.$isss[$empleado->id].'</li>';
+        }
+        if(isset($afp[$empleado->id])){
+            $html .= '<li><strong>AFP: </strong>'.$afp[$empleado->id].'</li>';
+        }
+        if(isset($renta[$empleado->id])){
+            $html .= '<li><strong>Renta: </strong>'.$renta[$empleado->id].'</li>';
+        }
+     //}
+    
+     $html .= '</ul>';
+  
 
      // Escribe el contenido HTML en la página actual
      $pdf::writeHTML($html, true, false, true, false);
