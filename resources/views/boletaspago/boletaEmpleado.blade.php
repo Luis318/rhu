@@ -23,7 +23,7 @@
                                 <div class="md-3 row pt-3">
                                     <div class="col-sm-6">
                                         <label class="form-label" for="dui">DUI</label>
-                                        <input class="form-control" type="text" id="dui" name="dui">
+                                        <input value="{{ $empleado->dui }}" class="form-control" type="text" id="dui" name="dui">
                                     </div>
                                     <div class="col-sm-6">
                                         <label class="form-label" for="puesto">Puesto</label>
@@ -34,22 +34,22 @@
                                 <div class="md-3 row pt-3">
                                     <div class="col-sm-6">
                                         <label class="form-label" for="pnombre">Primer Nombre</label>
-                                        <input class="form-control" type="text" id="pnombre" name="pnombre">
+                                        <input value="{{ $empleado->primerNombre }}" class="form-control" type="text" id="pnombre" name="pnombre">
                                     </div>
                                     <div class="col-sm-6">
                                         <label class="form-label" for="snombre">Segundo Nombre</label>
-                                        <input class="form-control" type="text" id="snombre" name="snombre">
+                                        <input value="{{ $empleado->segundoNombre }}" class="form-control" type="text" id="snombre" name="snombre">
                                     </div>
                                 </div>
 
                                 <div class="md-3 row pt-3 pb-3">
                                     <div class="col-sm-6">
                                         <label class="form-label" for="papellido">Primer Apellido</label>
-                                        <input class="form-control" type="text" id="papellido" name="papellido">
+                                        <input value="{{ $empleado->primerApellido }}" class="form-control" type="text" id="papellido" name="papellido">
                                     </div>
                                     <div class="col-sm-6">
                                         <label class="form-label" for="sapellido">Segundo Apellido</label>
-                                        <input class="form-control" type="text" id="sapellido" name="sapellido">
+                                        <input value="{{ $empleado->segundoApellido }}" class="form-control" type="text" id="sapellido" name="sapellido">
                                     </div>
                                 </div>
 
@@ -59,29 +59,29 @@
                                 <div class="md-3 row pt-3">
                                     <div class="col-sm-6">
                                         <label class="form-label" for="isssP">ISSS patrono</label>
-                                        <input class="form-control" type="text" id="isssP" name="isssP">
+                                        <input value="{{ $issPatrono[$empleado->id] }}" class="form-control" type="text" id="isssP" name="isssP">
                                     </div>
                                     <div class="col-sm-6">
                                         <label class="form-label" for="isssE">ISSS Empleado</label>
-                                        <input class="form-control" type="text" id="isssE" name="isssE">
+                                        <input value="{{ $isssEmp[$empleado->id] }}" class="form-control" type="text" id="isssE" name="isssE">
                                     </div>
                                 </div>
 
                                 <div class="md-3 row py-3">
                                     <div class="col-sm-6">
                                         <label class="form-label" for="afpP">AFP patrono</label>
-                                        <input class="form-control" type="text" id="afpP" name="afpP">
+                                        <input value="{{ $afpPatrono[$empleado->id] }}" class="form-control" type="text" id="afpP" name="afpP">
                                     </div>
                                     <div class="col-sm-6">
                                         <label class="form-label" for="afpE">AFP Empleado</label>
-                                        <input class="form-control" type="text" id="afpE" name="afpE">
+                                        <input value="{{ $afpEmp[$empleado->id] }}" class="form-control" type="text" id="afpE" name="afpE">
                                     </div>
                                 </div>
 
                                 <div class="md-3 row pb-3">
                                     <div class="col-sm-6">
                                         <label class="form-label" for="renta">Renta</label>
-                                        <input class="form-control" type="text" id="renta" name="renta">
+                                        <input value="{{ $renta[$empleado->id] }}" class="form-control" type="text" id="renta" name="renta">
                                     </div>
                                 </div>
 

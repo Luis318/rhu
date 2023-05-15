@@ -75,6 +75,22 @@ class PrestacionesController extends Controller
         return $descuentoIsss;
     }
 
+    //calcular ISSS del patrono
+    public function calcularIsssPatrono(){
+        $salarios = $this->Empleados->getEmpleados();
+        if($salarios == null){
+            return null;
+        }
+        $descuentoIsssPatrono = [];
+
+        foreach($salarios as $empleado){
+            $descuento = $empleado->salario_base * 0.075;
+            $descuentoIsssPatrono[$empleado->id] = $descuento;
+        }
+
+        return $descuentoIsssPatrono;
+    }
+
     //calcula el afp del empleado
     public function calcularAfp(){
         $salarios = $this->Empleados->getEmpleados();
@@ -88,6 +104,21 @@ class PrestacionesController extends Controller
             $descuentoAfp[$empleado->id]=$descuento;
         }
         return $descuentoAfp;
+    }
+
+    //calcula el afp del patrono
+    public function calcularAfpPatrono(){
+        $salarios = $this->Empleados->getEmpleados();
+        if($salarios == null){
+            return null;
+        }
+        $descuentoAfpPatrono = [];
+
+        foreach($salarios as $empleado){
+            $descuento = $empleado->salario_base * 0.0775;
+            $descuentoAfpPatrono[$empleado->id] = $descuento;
+        }
+        return $descuentoAfpPatrono;
     }
 
     //calculo de la renta 
@@ -122,12 +153,18 @@ class PrestacionesController extends Controller
     /****************Boletas de pago*****************/
     public function verBoleta($idEmpleado){
         $empleado = Empleados::find($idEmpleado);
-        return view('boletaspago.boletaEmpleado', compact('empleado'));
+        $horas =PrestacionesLaborales::where('empleado_id', $idEmpleado)->get();
+        $isssEmp = $this->calcularIsss();
+        $issPatrono = $this->calcularIsssPatrono();
+        $afpEmp = $this->calcularAfp();
+        $afpPatrono = $this->calcularAfpPatrono();
+        $renta = $this->calculaRenta();
+        return view('boletaspago.boletaEmpleado', compact('empleado', 'horas', 'isssEmp', 'afpEmp', 'renta', 'issPatrono', 'afpPatrono'));
     }
 
     /***********************Horas extras*************************/
-    public function viewHorasExtras(){
-        $empleados = Empleados::all();
-        return view('prestaciones.horasExtras',['empleados'=>$empleados]);
-    }
+    // public function viewHorasExtras(){
+    //     $empleados = Empleados::all();
+    //     return view('prestaciones.horasExtras',['empleados'=>$empleados]);
+    // }
 }
