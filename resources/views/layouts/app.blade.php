@@ -133,7 +133,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('horas_extras') }}">
+                <a class="nav-link" href="{{ route('horas') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Horas extras</span></a>
             </li>

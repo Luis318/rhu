@@ -127,6 +127,7 @@ class PrestacionesController extends Controller
 
     /***********************Horas extras*************************/
     public function viewHorasExtras(){
-        return view('prestaciones.horasExtras');
+        $empleados = Empleados::all();
+        return view('prestaciones.horasExtras',['empleados'=>$empleados]);
     }
 }
