@@ -40,3 +40,5 @@ Route::post('guardar_horas_extras', [App\Http\Controllers\HorasController::class
 Route::get('/generate-pdf', [App\Http\Controllers\PrestacionesController::class, 'generatePDF'])->name('generate-pdf');
 
 Route::get('/generate-boletas', [App\Http\Controllers\PrestacionesController::class, 'boletasMultiples'])->name('generate-boletas');
+
+Route::get('/vacaciones', [App\Http\Controllers\vacacionesController::class, 'index'])->name('vacaciones');
