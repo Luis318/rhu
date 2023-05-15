@@ -5,7 +5,7 @@ use App\Models\Empleados;
 use App\Models\PrestacionesLaborales;
 use Illuminate\Http\Request;
 use DataTables;
-
+use Elibyy\TCPDF\Facades\TCPDF;
 class PrestacionesController extends Controller
 {
     protected $Empleados, $PrestacionesLaborales;
@@ -29,9 +29,9 @@ class PrestacionesController extends Controller
                     ->addIndexColumn()
                     ->addColumn('acciones', function($row){
    
-                           $btn = '<a href="'.route('boleta_empleado', $row->id).'" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct"><i class="bi bi-eye-fill"></i></a>';
+                           $btn = '<a href="'.route('boleta_empleado', $row->id).'" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-success btn-sm editProduct"><i class="bi bi-plus-square"></i></a>';
    
-                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct"><i class="bi bi-trash-fill"></i></a>';
+                        //    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct"><i class="bi bi-trash-fill"></i></a>';
     
                             return $btn;
                     })
@@ -167,4 +167,39 @@ class PrestacionesController extends Controller
     //     $empleados = Empleados::all();
     //     return view('prestaciones.horasExtras',['empleados'=>$empleados]);
     // }
+
+    /***Generar PDF***/
+    public function generatePDF(){
+        $empleados = Empleados::all();
+        $isssEmp = $this->calcularIsss();
+        $afpEmp = $this->calcularAfp();
+        $renta = $this->calculaRenta();
+
+        //Para el nombre
+        $fechaActual = date('d-m-Y');
+        $nombreArchivo = 'planilla_' . $fechaActual . '.pdf';
+
+
+        //crear nueva instancia de pdf
+        $pdf = new TCPDF();
+        //establecer el contenido del documento
+        $html = view('pdf.planilla', compact('empleados', 'isssEmp', 'afpEmp', 'renta'))->render();
+
+        $pdf::SetPageOrientation('L');
+
+        //establecer la configuracion del documento PDF
+        $pdf::SetCreator('Tu Aplicacion');
+        $pdf::SetAuthor('Tu Nombre');
+        $pdf::SetTitle('Reporte de Empleados');
+        $pdf::SetHeaderData('', '', 'Datos de empleados', '');
+
+        //Agregar una nueva pagina
+        $pdf::AddPage();
+
+        //escribir el contenido HTML en el PDF
+        $pdf::writeHTML($html, true, false, true, false, '');
+
+        //generar y descargar el archivo pdf
+        $pdf::Output($nombreArchivo, 'D');
+    }
 }

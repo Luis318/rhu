@@ -36,3 +36,5 @@ Route::get('/horasExtras/{empleado_id}', [App\Http\Controllers\HorasController::
 Route::get('/horas', [App\Http\Controllers\HorasController::class, 'index'])->name('horas');
 
 Route::post('guardar_horas_extras', [App\Http\Controllers\HorasController::class, 'store'])->name('guardar_horas_extras');
+
+Route::get('/generate-pdf', [App\Http\Controllers\PrestacionesController::class, 'generatePDF'])->name('generate-pdf');

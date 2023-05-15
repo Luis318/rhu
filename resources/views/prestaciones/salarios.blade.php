@@ -7,8 +7,8 @@
                 <div class="row justify-content-center">
 
                     <div class="container d-flex justify-content-end mb-3">
-                        <button type="button" name="create" id="create" class="btn btn-success"><i
-                                class="bi bi-plus-square"></i></button>
+                        <a href="{{ route('generate-pdf') }}" name="create" id="create" class="btn btn-primary"><i
+                                class="">Imprimir planilla</i></a>
                     </div>
                     <div class="container-xl">
                         <div class="card">
