@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('segundoNombre',400);
             $table->string('primerApellido',400);
             $table->string('segundoApellido',400);
-            $table->string('dui',30);
+            $table->string('dui',30)->unique();
             $table->decimal('salario_base',8,2);
             $table->date('fechaNacimiento');
             $table->date('fechaContratacion');

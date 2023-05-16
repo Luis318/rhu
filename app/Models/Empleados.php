@@ -14,6 +14,11 @@ class Empleados extends Model
         return $this->hasMany(PrestacionesLaborales::class);
     }
 
+    public function vacaciones(){
+        
+        return $this->hasMany(Vacaciones::class);
+    }
+
     public function getEmpleados(){
         $empleados = Empleados::latest()->get();
         return $empleados;

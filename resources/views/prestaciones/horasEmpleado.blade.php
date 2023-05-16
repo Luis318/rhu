@@ -7,23 +7,18 @@
                 <div class="row justify-content-center">
 
                     <div class="container d-flex justify-content-end mb-3">
-                        <a href="{{ route('generate-boletas') }}" name="boletas" id="boletas" class="btn btn-primary mx-3"><i
-                            class="">Imprimir boletas</i></a>
-                        <a href="{{ route('generate-pdf') }}" name="create" id="create" class="btn btn-primary"><i
-                                class="">Imprimir planilla</i></a>
+                        <button type="button" name="create" id="create" class="btn btn-success"><i
+                                class="bi bi-plus-square"></i></button>
                     </div>
                     <div class="container-xl">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-striped table-bordered" id="emp_table">
+                                <table class="table table-striped table-bordered" id="horas_table">
                                     <thead>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Apellido</th>
                                         <th scope="col">DUI</th>
                                         <th scope="col">Salario</th>
-                                        <th scope="col">ISSS</th>
-                                        <th scope="col">AFP</th>
-                                        <th scope="col">Renta</th>
                                         <th scope="col">Acciones</th>
                                     </thead>
 
@@ -38,7 +33,7 @@
 
     <script>
         $(document).ready(function() {
-            var tabla = new DataTable('#emp_table', {
+            var tabla = new DataTable('#horas_table', {
                 processing: true,
                 serverSide: true,
                 searching: true,
@@ -46,7 +41,7 @@
                 autoWidth: false,
                 scrollX: true,
                 responsive: true,
-                ajax: "{{ route('salarios') }}",
+                ajax: "{{ route('horas') }}",
                 columns: [{
                         data: 'primerNombre',
                         name: 'Nombre',
@@ -69,24 +64,6 @@
                         data: 'salario_base',
                         name: 'Salario',
                         footer: 'Salario',
-                        //searchable: true
-                    },
-                    {
-                        data: 'descuento_isss',
-                        name: 'ISSS',
-                        footer: 'ISSS',
-                        //searchable: true
-                    },
-                    {
-                        data: 'descuento_afp',
-                        name: 'AFP',
-                        footer: 'AFP',
-                        //searchable: true
-                    },
-                    {
-                        data: 'descuento_renta',
-                        name: 'Renta',
-                        footer: 'Renta',
                         //searchable: true
                     },
                     {
@@ -131,3 +108,4 @@
         });
     </script>
 @endsection
+|
