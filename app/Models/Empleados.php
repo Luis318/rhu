@@ -28,5 +28,15 @@ class Empleados extends Model
         $salarioEmpleados = Empleados::all();
         return $salarioEmpleados;
     }
+
+    public function aniosTrabajados(){
+
+        $fechaContratacion = $this->fechaContratacion;
+        $fechaActual = now();
+
+        $aniosTrabajados = $fechaActual->diffInYears($fechaContratacion);
+
+        return $aniosTrabajados;
+    }
     
 }

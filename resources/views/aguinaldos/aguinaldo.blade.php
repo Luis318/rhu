@@ -21,7 +21,9 @@
                                         <th scope="col">Apellido</th>
                                         <th scope="col">DUI</th>
                                         <th scope="col">Fecha de Contratación</th>
+                                        <th scope="col">Años trabajados</th>
                                         <th scope="col">Salario</th>
+                                        <th scope="col">Aguinaldo</th>
                                         <th scope="col">Acciones</th>
                                     </thead>
 
@@ -69,10 +71,18 @@
                         footer: 'Fecha de Contratación',
                     },
                     {
+                        data: 'antiguedad',
+                        name: 'Años trabajados',
+                    },
+                    {
                         data: 'salario_base',
                         name: 'Salario',
                         footer: 'Salario',
                         //searchable: true
+                    },
+                    {
+                        data: 'aguinaldo',
+                        name: 'Aguinaldo',
                     },
                     {
                         data: 'acciones',
