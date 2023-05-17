@@ -7,12 +7,13 @@ use App\Models\HorasExtras;
 use App\Models\PrestacionesLaborales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use DataTables;
 
 class HorasController extends Controller
 {
     protected $Empleados, $PrestacionesLaborales, $HorasExtras;
-    public function __construct(Empleados $Empleados, HorasExtras $HorasExtras,PrestacionesLaborales $PrestacionesLaborales)
+    public function __construct(Empleados $Empleados, HorasExtras $HorasExtras, PrestacionesLaborales $PrestacionesLaborales)
     {
         $this->Empleados = $Empleados;
         $this->PrestacionesLaborales = $PrestacionesLaborales;
@@ -52,7 +53,13 @@ class HorasController extends Controller
 
     public function store(Request $request)
     {
-        $this->insertarHorasExtras($request->empleado_id, $request->cdiurnas, $request->montodiurnas, $request->cnocturnas, $request->montonocturnas, $request->cnocturnasf, $request->montonocturnasf, $request->cdiurnasf, $request->montodiurnasf, $request->fecha);
+        //$this->insertarHorasExtras($request->empleado_id, $request->cdiurnas, $request->montodiurnas, $request->cnocturnas, $request->montonocturnas, $request->cnocturnasf, $request->montonocturnasf, $request->cdiurnasf, $request->montodiurnasf, $request->fecha);
+
+        //Revisar que los datos son correctos
+        $this->actualizarIncertarHoras($request->empleado_id, $request->cdiurnas, $request->montodiurnas, $request->cnocturnas, $request->montonocturnas, $request->cnocturnasf, $request->montonocturnasf, $request->cdiurnasf, $request->montodiurnasf, $request->fecha);
+
+        //$this->insertarHorasExtras($request->empleado_id, $request->cdiurnas, $request->montodiurnas, $request->cnocturnas, $request->montonocturnas, $request->cnocturnasf, $request->montonocturnasf, $request->cdiurnasf, $request->montodiurnasf, $request->fecha);
+
         return redirect()->route('home');
 
     }
@@ -70,5 +77,28 @@ class HorasController extends Controller
         $this->HorasExtras->montoDiurnasFeriado = $montoDiurnasFeriado;
         $this->HorasExtras->fecha = $fecha;
         $this->HorasExtras->save();
+    }
+
+    public function actualizarIncertarHoras($empleadoId, $cantidadDiurnas, $montoDiurnas, $cantidaNocturnas, $montoNocturnas, $cantidaNocturnasFeriado, $montoNocturnasFeriado, $cantidadDiurnaFeriado, $montoDiurnasFeriado, $fecha)
+    {
+        $mesActual = Carbon::now()->format('Y-m');
+
+        $horasExtrasExistentes = HorasExtras::where('id_empleado', $empleadoId)->where('fecha', 'LIKE', $mesActual . '%')->first();
+
+        if ($horasExtrasExistentes) {
+            $horasExtrasExistentes->cantidadDiurnas += $cantidadDiurnas;
+            //$horasExtrasExistentes->montoDiurnas += $montoDiurnas;
+            $horasExtrasExistentes->cantidadNocturnas += $cantidaNocturnas;
+            //$horasExtrasExistentes->montoNocturnas += $montoNocturnas;
+            $horasExtrasExistentes->cantidadNocturnasFeriado += $cantidaNocturnasFeriado;
+            //$horasExtrasExistentes->montoNocturnasFeriado += $montoNocturnasFeriado;
+            $horasExtrasExistentes->cantidadDiurnasferiado += $cantidadDiurnaFeriado;
+            //$horasExtrasExistentes->montoDiurnasFeriado += $montoDiurnasFeriado;
+            $horasExtrasExistentes->save();
+
+        }else{
+            $this->insertarHorasExtras($empleadoId, $cantidadDiurnas, $montoDiurnas, $cantidaNocturnas, $montoNocturnas, $cantidaNocturnasFeriado, $montoNocturnasFeriado, $cantidadDiurnaFeriado, $montoDiurnasFeriado, $fecha);
+        }
+    
     }
 }

@@ -92,44 +92,44 @@
                                 <div class="md-3 row py-3">
                                     <div class="col-sm-6">
                                         <label class="form-label" for="diurnas_festivas">Horas extras diurnas (En dias festivos)</label>
-                                        <input class="form-control" type="text" id="diurnas_festivas" name="diurnas_festivas">
+                                        <input class="form-control" value="{{ isset($horasExtrasExistentes->cantidadDiurnasFeriado) ? $horasExtrasExistentes->cantidadDiurnasFeriado : ''  }}" type="text" id="diurnas_festivas" name="diurnas_festivas">
                                     </div>
                                     <div class="col-sm-6">
                                         <label class="form-label" for="monto_diurnas_festivas">Monto a pagar</label>
-                                        <input class="form-control" type="text" id="monto_diurnas_festivas" name="monto_diurnas_festivas">
+                                        <input class="form-control" value="{{ isset($diurnasF[$empleado->id]) ? $diurnasF[$empleado->id] : ''  }}" type="text" id="monto_diurnas_festivas" name="monto_diurnas_festivas">
                                     </div>
                                 </div>
 
                                 <div class="md-3 row py-3">
                                     <div class="col-sm-6">
                                         <label class="form-label" for="nocturnas_festivas">Horas extras Nocturnas (En dias festivos)</label>
-                                        <input class="form-control" type="text" id="nocturnas_festivas" name="nocturnas_festivas">
+                                        <input class="form-control" value="{{ isset($horasExtrasExistentes->cantidadNocturnasFeriado) ? $horasExtrasExistentes->cantidadNocturnasFeriado : ''  }}" type="text" id="nocturnas_festivas" name="nocturnas_festivas">
                                     </div>
                                     <div class="col-sm-6">
                                         <label class="form-label" for="monto_nocturnas_festivas">Monto a pagar</label>
-                                        <input class="form-control" type="text" id="monto_nocturnas_festivas" name="monto_nocturnas_festivas">
+                                        <input class="form-control" type="text" id="monto_nocturnas_festivas" name="monto_nocturnas_festivas" value="{{ isset($nocturnasF[$empleado->id]) ? $nocturnasF[$empleado->id] : ''  }}">
                                     </div>
                                 </div>
 
                                 <div class="md-3 row py-3">
                                     <div class="col-sm-6">
-                                        <label class="form-label" for="diurnas_descanso">Horas extras diurnas (En dias de descanso)</label>
-                                        <input class="form-control" type="text" id="diurnas_descanso" name="diurnas_descanso">
+                                        <label class="form-label" for="diurnas">Horas extras diurnas</label>
+                                        <input class="form-control" value="{{ isset($horasExtrasExistentes->cantidadDiurnas) ? $horasExtrasExistentes->cantidadDiurnas : ''  }}" type="text" id="diurnas" name="diurnas">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label class="form-label" for="monto_diurnas_descanso">Monto a pagar</label>
-                                        <input class="form-control" type="text" id="monto_diurnas_descanso" name="monto_diurnas_descanso">
+                                        <label class="form-label" for="monto_diurnas">Monto a pagar</label>
+                                        <input class="form-control" type="text" id="monto_diurnas" name="monto_diurnas" value="{{ isset($diurnas[$empleado->id]) ? $diurnas[$empleado->id] : ''  }}">
                                     </div>
                                 </div>
 
                                 <div class="md-3 row py-3">
                                     <div class="col-sm-6">
-                                        <label class="form-label" for="nocturnas_descanso">Horas extras Nocturnas (En dias de descanso)</label>
-                                        <input class="form-control" type="text" id="nocturnas_descanso" name="nocturnas_descanso">
+                                        <label class="form-label" for="nocturnas">Horas extras Nocturnas</label>
+                                        <input class="form-control" value="{{isset($horasExtrasExistentes->cantidadNocturnas) ? $horasExtrasExistentes->cantidadNocturnas : ''  }}" type="text" id="nocturnas" name="nocturnas">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label class="form-label" for="monto_nocturnas_descanso">Monto a pagar</label>
-                                        <input class="form-control" type="text" id="monto_nocturnas_descanso" name="monto_nocturnas_descanso">
+                                        <label class="form-label" for="monto_nocturnas">Monto a pagar</label>
+                                        <input class="form-control" type="text" id="monto_nocturnas" name="monto_nocturnas" value="{{ isset($nocturnas[$empleado->id]) ? $nocturnas[$empleado->id] : ''  }}">
                                     </div>
                                 </div>
                             </div>

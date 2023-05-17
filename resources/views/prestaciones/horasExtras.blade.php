@@ -68,7 +68,7 @@
                                     
                                     <div class="md-3 row pt-3">
                                         <div class="col-sm-6">
-                                            <label class="form-label" for="cdiurnasf">Cantidad horas dirunas (festivas)</label>
+                                            <label class="form-label" for="cdiurnasf">Cantidad horas diurnas (festivas)</label>
                                             <input class="form-control" type="text" id="cdiurnasf" name="cdiurnasf">
                                         </div>
                                         <div class="col-sm-6">

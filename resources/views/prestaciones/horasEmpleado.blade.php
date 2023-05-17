@@ -5,7 +5,7 @@
         <main class="py-4">
             <div class="container-xl">
                 <div class="row justify-content-center">
-
+                    <h1>Horas extras</h1>
                     <div class="container d-flex justify-content-end mb-3">
                         <button type="button" name="create" id="create" class="btn btn-success"><i
                                 class="bi bi-plus-square"></i></button>

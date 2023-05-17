@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Empleados;
 use App\Models\PrestacionesLaborales;
+use App\Models\HorasExtras;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use DataTables;
 use Elibyy\TCPDF\Facades\TCPDF;
 
@@ -156,6 +158,17 @@ class PrestacionesController extends Controller
     /****************Boletas de pago*****************/
     public function verBoleta($idEmpleado)
     {
+        $nocturnasF = $this->calcularHorasExtrasNocturnasFeriado();
+        $diurnasF = $this->calcularHorasExtrasDiurnasFeriado();
+        $nocturnas =$this->calcularHorasExtrasNocturnas();
+        $diurnas = $this->calcularHorasExtrasDiurnas();
+
+        $mesActual = Carbon::now()->format('Y-m');
+
+        $horasExtrasExistentes = HorasExtras::where('id_empleado', $idEmpleado)->where('fecha', 'LIKE', $mesActual . '%')->first();
+
+        //dd($horasExtrasExistentes);
+
         $empleado = Empleados::find($idEmpleado);
         $horas = PrestacionesLaborales::where('empleado_id', $idEmpleado)->get();
         $isssEmp = $this->calcularIsss();
@@ -163,7 +176,7 @@ class PrestacionesController extends Controller
         $afpEmp = $this->calcularAfp();
         $afpPatrono = $this->calcularAfpPatrono();
         $renta = $this->calculaRenta();
-        return view('boletaspago.boletaEmpleado', compact('empleado', 'horas', 'isssEmp', 'afpEmp', 'renta', 'issPatrono', 'afpPatrono'));
+        return view('boletaspago.boletaEmpleado', compact('empleado', 'horas', 'isssEmp', 'afpEmp', 'renta', 'issPatrono', 'afpPatrono', 'horasExtrasExistentes', 'nocturnasF', 'diurnasF', 'nocturnas', 'diurnas'));
     }
 
     /***********************Horas extras*************************/
@@ -292,5 +305,65 @@ class PrestacionesController extends Controller
             $salario[$empleado->id] = $empleado->salario_base - $isssEmp[$empleado->id] - $afpEmp[$empleado->id] - $renta[$empleado->id];
         }
         return $salario;
+    }
+
+    //calcular horas extras diurnas
+    public function calcularHorasExtrasDiurnas(){
+        $empleados = Empleados::all();
+        $horas = HorasExtras::all();
+        $horasExtras = [];
+        foreach($empleados as $empleado){
+            $horasExtras[$empleado->id] = 0;
+        }
+        foreach($horas as $hora){
+            $horasExtras[$hora->id_empleado] = $hora->cantidadDiurnas * $hora->montoDiurnas;
+        }
+        //dd($horasExtras);
+        return $horasExtras;
+    }
+
+    //calcular horas extras nocturnas
+    public function calcularHorasExtrasNocturnas(){
+        $empleados = Empleados::all();
+        $horas = HorasExtras::all();
+        $horasExtras = [];
+        foreach($empleados as $empleado){
+            $horasExtras[$empleado->id] = 0;
+        }
+        foreach($horas as $hora){
+            $horasExtras[$hora->id_empleado] = $hora->cantidadNocturnas * $hora->montoNocturnas;
+        }
+        //dd($horasExtras);
+        return $horasExtras;
+    }
+
+    //calcular horas extras diurnas feriado
+    public function calcularHorasExtrasDiurnasFeriado(){
+        $empleados = Empleados::all();
+        $horas = HorasExtras::all();
+        $horasExtras = [];
+        foreach($empleados as $empleado){
+            $horasExtras[$empleado->id] = 0;
+        }
+        foreach($horas as $hora){
+            $horasExtras[$hora->id_empleado] = $hora->cantidadDiurnasFeriado * $hora->montoDiurnasFeriado;
+        }
+        //dd($horasExtras);
+        return $horasExtras;
+    }
+
+    //calcular horas extras nocturnas feriado
+    public function calcularHorasExtrasNocturnasFeriado(){
+        $empleados = Empleados::all();
+        $horas = HorasExtras::all();
+        $horasExtras = [];
+        foreach($empleados as $empleado){
+            $horasExtras[$empleado->id] = 0;
+        }
+        foreach($horas as $hora){
+            $horasExtras[$hora->id_empleado] = $hora->cantidadNocturnasFeriado * $hora->montoNocturnasFeriado;
+        }
+        //dd($horasExtras);
+        return $horasExtras;
     }
 }
