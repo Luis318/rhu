@@ -259,7 +259,7 @@ class PrestacionesController extends Controller
             $html .= '<ul>';
             $html .= '<li><strong>Nombre: </strong>' . $empleado->primerNombre . ' ' . $empleado->segundoNombre . ' ' . $empleado->primerApellido . ' ' . $empleado->segundoApellido . '</li>';
             $html .= '<li><strong>DUI: </strong>' . $empleado->dui . '</li>';
-            $html .= '<li><strong>Salario base: </strong>' . $empleado->salario_base . '</li>';
+            $html .= '<li><strong>Salario base: </strong>' . number_format($empleado->salario_base,2,'.',',') . '</li>';
             $html .= '<li><strong>Email: </strong>' . $empleado->email . '</li>';
             $html .= '<br>';
             $html .= '</ul>';
@@ -267,13 +267,13 @@ class PrestacionesController extends Controller
             $html .= '<ul>';
 
             if (isset($isss[$empleado->id])) {
-                $html .= '<li><strong>ISSS: </strong>' . $isss[$empleado->id] . '</li>';
+                $html .= '<li><strong>ISSS: </strong>' . number_format($isss[$empleado->id],2,'.',',') . '</li>';
             }
             if (isset($afp[$empleado->id])) {
-                $html .= '<li><strong>AFP: </strong>' . $afp[$empleado->id] . '</li>';
+                $html .= '<li><strong>AFP: </strong>' . number_format($afp[$empleado->id],2,'.',','). '</li>';
             }
             if (isset($renta[$empleado->id])) {
-                $html .= '<li><strong>Renta: </strong>' . $renta[$empleado->id] . '</li>';
+                $html .= '<li><strong>Renta: </strong>' . number_format($renta[$empleado->id], 2,'.',',') . '</li>';
             }
            
             $html .= '</ul>';
@@ -281,21 +281,21 @@ class PrestacionesController extends Controller
             $html .= '<ul>';
 
             if (isset($diurnas[$empleado->id])) {
-                $html .= '<li><strong>Horas diurnas: </strong>' . $diurnas[$empleado->id] . '</li>';
+                $html .= '<li><strong>Horas diurnas: </strong>' . number_format($diurnas[$empleado->id],2,'.',',') . '</li>';
             }
             if (isset($nocturnas[$empleado->id])) {
-                $html .= '<li><strong>Horas nocturnas: </strong>' . $nocturnas[$empleado->id] . '</li>';
+                $html .= '<li><strong>Horas nocturnas: </strong>' . number_format($nocturnas[$empleado->id],2,'.',',' ). '</li>';
             }
             if (isset($diurnasF[$empleado->id])) {
-                $html .= '<li><strong>Horas diurnas (Feriado): </strong>' . $diurnasF[$empleado->id] . '</li>';
+                $html .= '<li><strong>Horas diurnas (Feriado): </strong>' . number_format($diurnasF[$empleado->id],2,'.',',') . '</li>';
             }
             if (isset($nocturnasF[$empleado->id])) {
-                $html .= '<li><strong>Horas nocturnas (Feriado): </strong>' . $nocturnasF[$empleado->id] . '</li>';
+                $html .= '<li><strong>Horas nocturnas (Feriado): </strong>' .number_format($nocturnasF[$empleado->id],2,'.',',') . '</li>';
             }
            
             $html .= '</ul>';
 
-            $html .= '<p><strong>Total a pagar: </strong>' . $totalPagar[$empleado->id] . '</p>';
+            $html .= '<p><strong>Total a pagar: </strong>' . number_format($totalPagar[$empleado->id],2,'.',',' ). '</p>';
 
 
             // Escribe el contenido HTML en la página actual

@@ -45,10 +45,10 @@
                 <td>{{ $empleado->dui }}</td>
                 <td>{{ $empleado->primerNombre }}</td>
                 <td>{{ $empleado->primerApellido }}</td>
-                <td>{{ $empleado->salario_base }}</td>
-                <td>{{ $afpEmp[$empleado->id] }}</td>
-                <td>{{ $isssEmp[$empleado->id] }}</td>
-                <td>{{ $renta[$empleado->id] }}</td>
+                <td>{{ number_format($empleado->salario_base,2,'.',',') }}</td>
+                <td>{{ number_format($afpEmp[$empleado->id],2,'.',',') }}</td>
+                <td>{{ number_format($isssEmp[$empleado->id],2,'.',',') }}</td>
+                <td>{{ number_format($renta[$empleado->id],2,'.',',') }}</td>
             </tr>
         @endforeach
     </tbody>

@@ -5,7 +5,7 @@
         <main class="py-4">
             <div class="container-xl">
                 <div class="row justify-content-center">
-
+                    <h3>Salarios de empleados</h3>
                     <div class="container d-flex justify-content-end mb-3">
                         <a href="{{ route('generate-boletas') }}" name="boletas" id="boletas" class="btn btn-primary mx-3"><i
                             class="">Imprimir boletas</i></a>
