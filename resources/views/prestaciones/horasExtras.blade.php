@@ -44,60 +44,50 @@
                                     </div>
 
                                     <div class="md-3 row pt-3">
-                                        <div class="col-sm-3">
-                                            <label class="form-label" for="horasdiurnas">Horas extras diurnas</label>
-                                            <input class="form-control" type="text" id="horasdiurnas"
-                                                name="horasdiurnas">
+                                        <div class="col-sm-6">
+                                            <label class="form-label" for="cdiurnas">Cantidad horas diurnas</label>
+                                            <input class="form-control" type="text" id="cdiurnas" name="cdiurnas">
                                         </div>
-                                        <div class="col-sm-3">
-                                            <label class="form-label" for="monto_hed">Monto a pagar</label>
-                                            <input class="form-control" type="text" id="monto_hed" name="monto_hed">
-                                        </div>
-                                        <div class="col-sm-3 d-flex align-items-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="monto_hed_descanso" name="monto_hed_descanso">
-                                                <label class="form-check-label" for="monto_hed_descanso">En dia de
-                                                    descanso</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3 d-flex align-items-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="monto_hed_festivo" name="monto_hed_festivo">
-                                                <label class="form-check-label" for="monto_hed_festivo">En dia
-                                                    festivo</label>
-                                            </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label" for="montodiurnas">Monto por hora</label>
+                                            <input class="form-control" type="text" id="montodiurnas" name="montodiurnas">
                                         </div>
                                     </div>
 
                                     <div class="md-3 row pt-3">
-                                        <div class="col-sm-3">
-                                            <label class="form-label" for="horasdiurnas">Horas extras nocturnas</label>
-                                            <input class="form-control" type="text" id="horasnocturnas"
-                                                name="horasnocturnas">
+                                        <div class="col-sm-6">
+                                            <label class="form-label" for="cnocturnas">Cantidad horas nocturnas</label>
+                                            <input class="form-control" type="text" id="cnocturnas" name="cnocturnas">
                                         </div>
-                                        <div class="col-sm-3">
-                                            <label class="form-label" for="monto_hen">Monto a pagar</label>
-                                            <input class="form-control" type="text" id="monto_hen" name="monto_hen">
-                                        </div>
-                                        <div class="col-sm-3 d-flex align-items-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="monto_hen_descanso" name="monto_hen_descanso">
-                                                <label class="form-check-label" for="monto_hen_descanso">En dia de
-                                                    descanso</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3 d-flex align-items-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="monto_hen_festivo" name="monto_hen_festivo">
-                                                <label class="form-check-label" for="monto_hen_festivo">En dia
-                                                    festivo</label>
-                                            </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label" for="montonocturnas">Monto por hora</label>
+                                            <input class="form-control" type="text" id="montonocturnas" name="montonocturnas">
                                         </div>
                                     </div>
+
+                                    
+                                    <div class="md-3 row pt-3">
+                                        <div class="col-sm-6">
+                                            <label class="form-label" for="cdiurnasf">Cantidad horas dirunas (festivas)</label>
+                                            <input class="form-control" type="text" id="cdiurnasf" name="cdiurnasf">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label" for="montodiurnasf">Monto por hora</label>
+                                            <input class="form-control" type="text" id="montodiurnasf" name="montodiurnasf">
+                                        </div>
+                                    </div>
+
+                                    <div class="md-3 row pt-3">
+                                        <div class="col-sm-6">
+                                            <label class="form-label" for="cnocturnasf">Cantidad horas nocturnas (festivas)</label>
+                                            <input class="form-control" type="text" id="cnocturnasf" name="cnocturnasf">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label" for="montonocturnasf">Monto por hora</label>
+                                            <input class="form-control" type="text" id="montonocturnasf" name="montonocturnasf">
+                                        </div>
+                                    </div>
+
                                     <div class="md-3 row pt-3 pb-3  ">
                                         <div class="col-sm-6">
                                             <label class="form-label" for="fecha">Fecha</label>
