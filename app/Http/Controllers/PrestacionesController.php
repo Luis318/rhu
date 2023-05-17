@@ -242,9 +242,11 @@ class PrestacionesController extends Controller
             $afp = $this->calcularAfp();
             $renta = $this->calculaRenta();
             $totalPagar = $this->calcularSalario();
-            // $issE = $isss[$empleado->id];
-            // $afpE = $afp[$empleado->id];
-            // $rentaE = $renta[$empleado->id];
+            $diurnas = $this->calcularHorasExtrasDiurnas();
+            $nocturnas = $this->calcularHorasExtrasNocturnas();
+            $diurnasF = $this->calcularHorasExtrasDiurnasFeriado();
+            $nocturnasF = $this->calcularHorasExtrasNocturnasFeriado();
+
             //dd($empleado->id);
             // Agrega una nueva página
             $pdf::AddPage();
@@ -263,7 +265,7 @@ class PrestacionesController extends Controller
             $html .= '</ul>';
             $html .= '<h3>retenciones laborales</h3>';
             $html .= '<ul>';
-            //foreach($empleados as $empleado){
+
             if (isset($isss[$empleado->id])) {
                 $html .= '<li><strong>ISSS: </strong>' . $isss[$empleado->id] . '</li>';
             }
@@ -273,8 +275,24 @@ class PrestacionesController extends Controller
             if (isset($renta[$empleado->id])) {
                 $html .= '<li><strong>Renta: </strong>' . $renta[$empleado->id] . '</li>';
             }
-            //}
+           
+            $html .= '</ul>';
+            $html .= '<h3>Horas extras</h3>';
+            $html .= '<ul>';
 
+            if (isset($diurnas[$empleado->id])) {
+                $html .= '<li><strong>Horas diurnas: </strong>' . $diurnas[$empleado->id] . '</li>';
+            }
+            if (isset($nocturnas[$empleado->id])) {
+                $html .= '<li><strong>Horas nocturnas: </strong>' . $nocturnas[$empleado->id] . '</li>';
+            }
+            if (isset($diurnasF[$empleado->id])) {
+                $html .= '<li><strong>Horas diurnas (Feriado): </strong>' . $diurnasF[$empleado->id] . '</li>';
+            }
+            if (isset($nocturnasF[$empleado->id])) {
+                $html .= '<li><strong>Horas nocturnas (Feriado): </strong>' . $nocturnasF[$empleado->id] . '</li>';
+            }
+           
             $html .= '</ul>';
 
             $html .= '<p><strong>Total a pagar: </strong>' . $totalPagar[$empleado->id] . '</p>';
@@ -300,9 +318,13 @@ class PrestacionesController extends Controller
         $isssEmp = $this->calcularIsss();
         $afpEmp = $this->calcularAfp();
         $renta = $this->calculaRenta();
+        $diurnas = $this->calcularHorasExtrasDiurnas();
+        $nocturnas = $this->calcularHorasExtrasNocturnas();
+        $diurnasF = $this->calcularHorasExtrasDiurnasFeriado(); 
+        $nocturnasF = $this->calcularHorasExtrasNocturnasFeriado();
         $salario = [];
         foreach($empleados as $empleado){
-            $salario[$empleado->id] = $empleado->salario_base - $isssEmp[$empleado->id] - $afpEmp[$empleado->id] - $renta[$empleado->id];
+            $salario[$empleado->id] = $empleado->salario_base - $isssEmp[$empleado->id] - $afpEmp[$empleado->id] - $renta[$empleado->id] + $diurnas[$empleado->id] + $nocturnas[$empleado->id] + $diurnasF[$empleado->id] + $nocturnasF[$empleado->id];
         }
         return $salario;
     }
