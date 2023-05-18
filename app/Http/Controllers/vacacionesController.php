@@ -7,16 +7,30 @@ use App\Models\PrestacionesLaborales;
 use App\Models\vacaciones;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use DataTables;
 
 class vacacionesController extends Controller
 {
 
     public function vacacionesList(Request $request)
     {
-        $data['vacaciones'] = DB::select("select vacaciones.*, concat (empleados.primerNombre,' ', empleados.primerApellido) as nombreEmpleado FROM vacaciones
-        INNER JOIN empleados ON vacaciones.id_empleado	= empleados.id
-        ORDER BY vacaciones.id DESC");
-        return view('vacaciones\vacaciones-list', $data);
+        if($request->ajax()){
+            $data['vacaciones'] = DB::select("select vacaciones.*, concat (empleados.primerNombre,' ', empleados.primerApellido) as nombreEmpleado FROM vacaciones
+            INNER JOIN empleados ON vacaciones.id_empleado	= empleados.id
+            ORDER BY vacaciones.id DESC");
+
+            return Datatables::of($data['vacaciones'])
+            ->addIndexColumn()
+            ->addColumn('acciones', function($row){
+                $btn = '<a href="' . route('vacaciones-view',$row->id) . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-success btn-sm editProduct"><i class="bi bi-plus-square"></i></a>';
+
+                return $btn;
+            })
+            ->rawColumns(['acciones'])
+            ->make(true);
+
+        }
+        return view('vacaciones\vacaciones-list');
     }
 
     public function vacacionesCreate()

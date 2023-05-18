@@ -20,7 +20,7 @@
                                         <th scope="col">Monto</th>
                                         <th scope="col">Acciones</th>
                                     </thead>
-                                    @foreach ($vacaciones as $vacacion)
+                                    {{-- @foreach ($vacaciones as $vacacion)
                                         <tr>
                                             <td>{{$vacacion->nombreEmpleado}}</td>
                                             <td>{{$vacacion->fechaInicio}}</td>
@@ -30,7 +30,7 @@
                                                 class="btn btn-success" align="right"><i class="bi bi-eye-fill"></i></a>
                                             </td>
                                         </tr>                                        
-                                    @endforeach
+                                    @endforeach --}}
                                 </table>
                             </div>
                         </div>
@@ -39,4 +39,58 @@
             </div>
         </main>
     </div>
+    <script>
+        $(document).ready(function() {
+            var tabla = new DataTable('#vac_table', {
+                processing: true,
+                serverSide: true,
+                searching: true,
+                serverSide: false,
+                autoWidth: false,
+                scrollX: true,
+                responsive: true,
+                ajax: "{{ route('vacaciones-list') }}",
+                columns: [{
+                        data: 'nombreEmpleado',
+                        name: 'Empleado',
+                    },
+                    {
+                        data: 'fechaInicio',
+                        name: 'Fecha Inicio',
+                    },
+                    {
+                        data: 'fechaFin',
+                        name: 'Fecha Fin',
+
+                    },
+                    {
+                        data: 'monto',
+                        name: 'Monto',
+                    },
+                    {
+                        data: 'acciones',
+                        orderable: false,
+                        searchable: false
+                    },
+                ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                },
+                "order": [
+                    [0, "asc"]
+                ],
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "Todos"]
+                ],
+            });
+            $('#buscarT').on('input', function() {
+                // Obtener el valor del campo de búsqueda
+                var valor = $(this).val();
+
+                // Realizar la búsqueda en la tabla y actualizarla
+                tabla.search(valor).draw();
+            });
+        });
+    </script>
 @endsection
