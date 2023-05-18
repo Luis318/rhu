@@ -16,7 +16,11 @@ return new class extends Migration
         Schema::create('vacaciones', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_empleado')->constrained('empleados')->onDelete('cascade');
-            $table->date('fecha_actual');
+            $table->date('fechaInicio');
+            $table->date('fechaFin');
+            $table->string('descripcion');
+            $table->string('tipo');
+            $table->integer('diasTrabajados');
             $table->decimal('monto',8,2);
             $table->timestamps();
         });

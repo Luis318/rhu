@@ -120,7 +120,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Prestaciones</h6>
                         <a class="collapse-item" href="{{ route('salarios') }}">Salarios</a>
-                        <a class="collapse-item" href="{{ route('vacaciones') }}">Vacaciones</a>
+                        <a class="collapse-item" href="{{ route('vacaciones-list') }}">Vacaciones</a>
                         <a class="collapse-item" href="{{ route('aguinaldos') }}">Aguinaldos</a>
                         {{-- <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div class="collapse-divider"></div>
@@ -136,6 +136,13 @@
                 <a class="nav-link" href="{{ route('horas') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Horas extras</span></a>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('indemnizacion-list')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Indenmizaciones</span></a>
             </li>
 
             {{-- <!-- Nav Item - Tables -->

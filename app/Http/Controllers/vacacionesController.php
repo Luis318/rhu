@@ -5,54 +5,71 @@ namespace App\Http\Controllers;
 use App\Models\Empleados;
 use App\Models\PrestacionesLaborales;
 use App\Models\vacaciones;
-use Elibyy\TCPDF\Facades\TCPDF;
-use DataTables;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class vacacionesController extends Controller
 {
-    protected $Empleados, $PrestacionesLaborales, $vacaciones;
 
-    public function __construct(Empleados $Empleados, PrestacionesLaborales $PrestacionesLaborales, vacaciones $vacaciones)
+    public function vacacionesList(Request $request)
     {
-        $this->Empleados = $Empleados;
-        $this->PrestacionesLaborales = $PrestacionesLaborales;
-        $this->vacaciones = $vacaciones;
+        $data['vacaciones'] = DB::select("select vacaciones.*, concat (empleados.primerNombre,' ', empleados.primerApellido) as nombreEmpleado FROM vacaciones
+        INNER JOIN empleados ON vacaciones.id_empleado	= empleados.id
+        ORDER BY vacaciones.id DESC");
+        return view('vacaciones\vacaciones-list', $data);
     }
 
-    public function index(Request $request)
+    public function vacacionesCreate()
     {
-        //dd($request);
-        //dd($this->calcularIsss());
-        if ($request->ajax()) {
-            $data = Empleados::latest()->get();
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->addColumn('acciones', function ($row) {
-
-                    $btn = '<a href="" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-success btn-sm editProduct"><i class="bi bi-plus-square"></i></a>';
-
-                    //    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct"><i class="bi bi-trash-fill"></i></a>';
-    
-                    return $btn;
-                })
-                ->addcolumn('salario_base', function ($row) {
-                    return number_format($row->salario_base, 2, '.', ',');
-                })
-                ->addcolumn('primerNombre', function ($row) {
-                    return $row->primerNombre . ' ' . $row->segundoNombre;
-                })
-                ->addColumn('fechaContratacion', function ($row){
-                    return $row->fechaContratacion;
-                })
-                ->rawColumns(['acciones'])
-                ->make(true);
-        }
-        return view('vacaciones.vacacion');
-
+        $data['empleados'] = Empleados::all();
+        return view('vacaciones\vacaciones-create',$data);
     }
 
-    public function calcularVacaciones(){
-        
+    public function vacacionesStore(Request $request)
+    {
+        $empleado = Empleados::find($request->id_empleado);
+        $vacacion = new Vacaciones;
+        $vacacion->id_empleado = $request->id_empleado;
+        $vacacion->fechaInicio = $request->fechaInicio;
+        $vacacion->fechaFin = $request->fechaFin;
+        $vacacion->monto = $request->monto;
+        $vacacion->tipo = $request->tipo;
+        $vacacion->diasTrabajados = $request->diasTrabajados;
+        $vacacion->descripcion = $request->descripcion;
+        $vacacion->save();
+        return redirect()->route("vacaciones-list");
+    }
+
+    public function vacacionesView($id)
+    {
+        $data['vacaciones'] = DB::select("select vacaciones.*, concat (empleados.primerNombre,' ', empleados.primerApellido) as nombreEmpleado,
+        empleados.salario_base,empleados.fechaContratacion,CASE
+        WHEN vacaciones.tipo = '1' then 'Completa'
+        WHEN vacaciones.tipo = '2' then 'Proporcional' end as tipoNombre
+        FROM vacaciones
+        INNER JOIN empleados ON vacaciones.id_empleado	= empleados.id
+        WHERE vacaciones.id=$id");
+        return view('vacaciones\vacaciones-view',$data);
+    }
+
+    public function vacacionesUpdate($id)
+    {
+        $data['empleados'] = Empleados::all();
+        return view('vacaciones\vacaciones-update',$data);
+    }
+
+    public function vacacionesStoreUpdate(Request $request,$id)
+    {
+        $empleado = Empleados::find($request->id_empleado);
+        $vacacion = new Vacaciones;
+        $vacacion->id_empleado = $request->id_empleado;
+        $vacacion->fechaInicio = $request->fechaInicio;
+        $vacacion->fechaFin = $request->fechaFin;
+        $vacacion->monto = $request->monto;
+        $vacacion->tipo = $request->tipo;
+        $vacacion->diasTrabajados = $request->diasTrabajados;
+        $vacacion->descripcion = $request->descripcion;
+        $vacacion->update($id);
+        return redirect()->route("vacaciones-list");
     }
 }
