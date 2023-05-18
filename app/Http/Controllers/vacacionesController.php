@@ -26,6 +26,9 @@ class vacacionesController extends Controller
 
                 return $btn;
             })
+            ->addcolumn('monto', function($row){
+                return number_format($row->monto, 2, '.', ',');
+            })
             ->rawColumns(['acciones'])
             ->make(true);
 
