@@ -4,12 +4,12 @@
         <main class="py-4">
             <div class="container-xl">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Crear Indemnizaciones</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Nueva Solicitud de Vacaciones</h1>
                 </div>
                 <div class="row justify-content-center">
                     <div class="container-xl">
                         <div class="card">
-                            <form method="POST" action="{{ route('indemnizacion-store') }}">
+                            <form method="POST" action="{{ route('vacaciones-store') }}">
                                 @csrf
                                 <div class="card-body">
 
@@ -37,8 +37,6 @@
                                         </div>
                                     </div>
 
-                                    
-
                                     <script>
                                         function showEmpleado(empleados){
                                             var empleadosArray = new Array();
@@ -51,64 +49,69 @@
                                             return false;
                                         }
 
+                                        function readOnlyF(){
+                                            if(document.getElementById('tipo').value === "1"){
+                                                document.getElementById('diasTrabajados').readOnly = true;
+                                            }
+                                            else{
+                                                document.getElementById('diasTrabajados').readOnly = false;
+                                            }
+
+                                            calculoMonto();
+                                        }
+
                                         function calculoMonto(){
                                             var monto = 0;
-                                            var fechaContratacion  = new Date(document.getElementById('fechaContratacion').value);
-                                            var fechaDespido = new Date(document.getElementById('fecha_despido').value)
+                                            var porVacaciones = 0;
+                                            var montoCompleto = 0;
+                                            if(document.getElementById('tipo').value === "1"){
+                                                porVacaciones = (document.getElementById('salario_base').value / 2)* 0.3;
+                                                monto = ((document.getElementById('salario_base').value / 2) + porVacaciones).toFixed(2);
+                                            }else{
 
-                                            var aniosLaborados = Math.trunc(((fechaDespido-fechaContratacion)/(1000*60*60*24*12*365))*10);
-                                            var fechaMeses = new Date(fechaDespido.getFullYear(),fechaContratacion.getMonth(),fechaContratacion.getDate());
-                                            var diasLaborados = 0;
-                                            if(fechaContratacion.getMonth()+1 > fechaDespido.getMonth()+1){
-                                                var fechaFin = new Date("2023-12-31");
-                                                var fechaInicio = new Date("2023-1-1");
-                                                diasLaborados = Math.round(Math.abs((fechaMeses-fechaFin)/(1000*60*60*24))) + Math.round(Math.abs((fechaInicio-fechaDespido)/(1000*60*60*24))) - 1;
-                                            }
-                                            else{
-                                                diasLaborados = Math.round(Math.abs((fechaDespido-fechaMeses)/(1000*60*60*24)));
+                                                porVacaciones = (document.getElementById('salario_base').value / 2)* 0.3;
+                                                montoCompleto = (document.getElementById('salario_base').value / 2) + porVacaciones;
+                                                monto = ((document.getElementById('diasTrabajados').value*montoCompleto)/365).toFixed(2);
                                             }
 
-                                            if(document.getElementById('categoria').value == "1"){
-                                                monto = ((document.getElementById('salario_base').value*aniosLaborados)+((document.getElementById('salario_base').value/365)*diasLaborados)).toFixed(2);
-                                            }
-                                            else{
-                                                if(aniosLaborados > 1){
-                                                    monto = (((document.getElementById('salario_base').value/2)*aniosLaborados)+(((document.getElementById('salario_base').value/2)/365)*diasLaborados)).toFixed(2);
-                                                }
-                                                else{
-                                                    monto = 0;
-                                                }
-                                                
-                                            }
-                                            
                                             document.getElementById('monto').value = monto;
                                             return false;
                                         }
                                         </script>
 
                                     <div class="text-center mx-auto border-top mt-3">
-                                        <h4 class="pt-3">Indemnización</h4>
+                                        <h4 class="pt-3">Vacaciones</h4>
                                     </div>
                                     
                                     <div class="md-3 row pt-3">
                                         <div class="col-sm-4">
-                                            <label class="form-label">Categoría</label>
-                                            <select class="form-control" id="categoria" name="categoria" onchange="return calculoMonto();">
-                                                <option value="1">Despido sin Justificación</option>
-                                                <option value="2">Renuncia voluntaria</option>
+                                            <label class="form-label">Fecha de Inicio</label>
+                                            <input class="form-control" type="date" id="fechaInicio" name="fechaInicio" value="<?php echo date("Y-m-d");?>">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label class="form-label">Fecha de Finalización</label>
+                                            <input class="form-control" type="date" id="fechaFin" name="fechaFin"  value="<?php echo date("Y-m-d");?>">
+                                        </div>
+                                    </div>
+                                    <div class="md-3 row pt-3">  
+                                        <div class="col-sm-4">
+                                            <label class="form-label">Tipo</label>
+                                            <select class="form-control" id="tipo" name="tipo" onchange="return readOnlyF();">
+                                                <option value="1">Total</option>
+                                                <option value="2">Proporcionales</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-4">
-                                            <label class="form-label">Fecha de Despido</label>
-                                            <input class="form-control" type="date" id="fecha_despido" name="fecha_despido" value="<?php echo date("Y-m-d");?>"
-                                            onchange="return calculoMonto();">
-                                        </div>
+                                            <label class="form-label">Dias Trabajados</label>
+                                            <input class="form-control" type="number" id="diasTrabajados" name="diasTrabajados" onchange="return calculoMonto();">
+                                        </div> 
                                         <div class="col-sm-4">
                                             <label class="form-label">Monto</label>
                                             <input class="form-control" type="number" id="monto" name="monto" readonly>
-                                        </div>
+                                        </div>                                    
+                                        
                                     </div>
-                                    <div class="md-3 row pt-3">                                      
+                                    <div class="md-3 row pt-3">
                                         <div class="col-sm-12">
                                             <label class="form-label">Descripción</label>
                                             <textarea class="form-control" type="text" id="descripcion" name="descripcion"></textarea>
