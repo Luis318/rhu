@@ -27,7 +27,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//Indemnizaciones
 Route::get('/indemnizacion-list', [App\Http\Controllers\IndemnizacionController::class, 'indemnizacionList'])->name('indemnizacion-list');
+Route::get('/indemnizacion-create', [App\Http\Controllers\IndemnizacionController::class, 'indemnizacionCreate'])->name('indemnizacion-create');
+Route::post('/indemnizacion-strore', [App\Http\Controllers\IndemnizacionController::class, 'indemnizacionStore'])->name('indemnizacion-store');
+Route::GET('/indemnizacion-view/{id}', [App\Http\Controllers\IndemnizacionController::class, 'indemnizacionView'])->name('indemnizacion-view');
+
 Route::get('/salarios', [App\Http\Controllers\PrestacionesController::class, 'index'])->name('salarios');
 Route::get('/descuentos', [App\Http\Controllers\PrestacionesController::class, 'caclularDescuentos'])->name('descuentos');
 

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_empleado')->constrained('empleados')->onDelete('cascade');
             $table->date('fecha_actual');
+            $table->date('fechaInicio');
+            $table->date('fechaFin');
             $table->decimal('monto',8,2);
             $table->timestamps();
         });

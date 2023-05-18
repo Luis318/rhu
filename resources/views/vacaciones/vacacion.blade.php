@@ -4,14 +4,12 @@
     <div id="app">
         <main class="py-4">
             <div class="container-xl">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Vacaciones</h1>
+                    <button type="button" name="create" id="create" class="btn btn-success" align="right"><i
+                        class="bi bi-plus-square"></i></button>
+                </div>
                 <div class="row justify-content-center">
-
-                    <div class="container d-flex justify-content-end mb-3">
-                        <a href="#" name="boletas" id="boletas" class="btn btn-primary mx-3"><i
-                            class="">Imprimir boletas</i></a>
-                        <a href="#" name="create" id="create" class="btn btn-primary"><i
-                                class="">Imprimir planilla</i></a>
-                    </div>
                     <div class="container-xl">
                         <div class="card">
                             <div class="card-body">

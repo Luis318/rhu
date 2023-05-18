@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('categoria');
             $table->decimal('monto',8,2);
-            $table->string('descripcionque', 900);
+            $table->string('descripcion', 900);
             $table->foreignId('id_empleado')->constrained('empleados')->onDelete('cascade');
+            $table->date('fecha_despido');
             $table->timestamps();
         });
     }
