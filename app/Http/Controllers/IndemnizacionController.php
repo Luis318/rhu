@@ -27,7 +27,7 @@ class IndemnizacionController extends Controller
             return Datatables::of($data['indeminzaciones'])
             ->addIndexColumn()
             ->addColumn('acciones', function($row){
-                $btn = '<a href="' . route('indemnizacion-view',$row->id) . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-success btn-sm editProduct"><i class="bi bi-plus-square"></i></a>';
+                $btn = '<a href="' . route('indemnizacion-view',$row->id) . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-success btn-sm editProduct"><i class="bi bi-eye-fill"></i></a>';
 
                 return $btn;
             })

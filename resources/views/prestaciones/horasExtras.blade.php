@@ -97,6 +97,7 @@
                                 </div>
                                 <input id="empleado_id" name="empleado_id" type="hidden" value="{{ $empleado->id }}">
                                 <div class="card-footer d-flex justify-content-end">
+                                    <button class="btn btn-success mx-3" type="submit">Imprimir</button>
                                     <button class="btn btn-primary" type="submit">Agregar</button>
                                 </div>
                             </form>

@@ -25,6 +25,7 @@ class HorasController extends Controller
         //dd($this->calcularIsss());
         if ($request->ajax()) {
             $data = Empleados::latest()->get();
+            $horas = [];
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('acciones', function ($row) {
@@ -38,6 +39,9 @@ class HorasController extends Controller
                 })
                 ->addcolumn('primerNombre', function ($row) {
                     return $row->primerNombre . ' ' . $row->segundoNombre;
+                })
+                ->addColumn('horas', function ($row) use ($horas) {
+                    return isset( $horas[$row->id] ) ? number_format($horas[$row->id], 2, '.', ','): '';
                 })
                 ->rawColumns(['acciones'])
                 ->make(true);

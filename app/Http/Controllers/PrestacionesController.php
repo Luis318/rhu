@@ -33,7 +33,7 @@ class PrestacionesController extends Controller
                 ->addIndexColumn()
                 ->addColumn('acciones', function ($row) {
 
-                    $btn = '<a href="' . route('boleta_empleado', $row->id) . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-success btn-sm editProduct"><i class="bi bi-plus-square"></i></a>';
+                    $btn = '<a href="' . route('boleta_empleado', $row->id) . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-success btn-sm editProduct"><i class="bi bi-eye-fill"></i></a>';
 
                     //    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct"><i class="bi bi-trash-fill"></i></a>';
     

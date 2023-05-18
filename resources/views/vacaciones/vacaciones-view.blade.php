@@ -69,6 +69,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex justify-content-end">
+                                    <button class="btn btn-success mx-3" type="submit">Imprimir</button>
                                     <button class="btn btn-primary" type="submit">Volver</button>
                                 </div>
                             </form>

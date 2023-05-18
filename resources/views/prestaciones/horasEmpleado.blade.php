@@ -7,7 +7,11 @@
                 <div class="row justify-content-center">
                     <h1>Horas extras</h1>
                     <div class="container d-flex justify-content-end mb-3">
-                        <button type="button" name="create" id="create" class="btn btn-success"><i
+                        <a href="#" name="boletas" id="boletas" class="btn btn-primary mx-3"><i class="">Imprimir
+                                boletas</i></a>
+                        <a href="{{ route('pdf-aguinaldos') }}" name="create" id="create" class="btn btn-primary"><i
+                                class="">Imprimir planilla</i></a>
+                        <button type="button" name="create" id="create" class="btn btn-success mx-3"><i
                                 class="bi bi-plus-square"></i></button>
                     </div>
                     <div class="container-xl">
@@ -19,6 +23,7 @@
                                         <th scope="col">Apellido</th>
                                         <th scope="col">DUI</th>
                                         <th scope="col">Salario</th>
+                                        <th scope="col">Horas extras</th>
                                         <th scope="col">Acciones</th>
                                     </thead>
 
@@ -65,6 +70,10 @@
                         name: 'Salario',
                         footer: 'Salario',
                         //searchable: true
+                    },
+                    {
+                        data: 'horas',
+                        name: 'Horas extras',
                     },
                     {
                         data: 'acciones',
