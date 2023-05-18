@@ -13,6 +13,7 @@ class AguinaldosController extends Controller
 {
     public function index(Request $request)
     {
+        //dd($this->calcularAntiguedadEmpleados());
         //dd($request);
         //dd($this->calcularIsss());
         //dd($this->calcularAntiguedadEmpleados());
@@ -60,7 +61,13 @@ class AguinaldosController extends Controller
 
         foreach($empleados as $empleado){
             $fechaContratacion = Carbon::parse($empleado->fechaContratacion);
-            $aniosTrabajados[$empleado->id] = $fechaContratacion->diffInYears(Carbon::now());
+            $antiguedad = $fechaContratacion->diffInYears(Carbon::now());
+
+            if($aniosTrabajados < 1){
+                $antiguedad = $fechaContratacion->diffInMonths(Carbon::now());
+                //dd($antiguedad);
+            }
+            $aniosTrabajados[$empleado->id] = $antiguedad; 
         }
         return $aniosTrabajados;
     }
@@ -68,11 +75,12 @@ class AguinaldosController extends Controller
     public function calcularAguinaldos(){
         $empleados = Empleados::all();
         $aguinaldos = [];
-        //$aniosTrabajados = $this->calcularAntiguedadEmpleados();
+        $aniosTrabajados = [];
 
         foreach($empleados as $empleado){
 
             $aniosTrabajados[$empleado->id] = $this->calcularAntiguedadEmpleados();
+            //dd($aniosTrabajados[$empleado->id]);
             if($aniosTrabajados[$empleado->id] > 1 && $aniosTrabajados[$empleado->id] < 3){
                 $pago = ($empleado->salario_base/30) * 15;
                 $aguinaldos[$empleado->id] = $pago;
@@ -86,6 +94,40 @@ class AguinaldosController extends Controller
 
         }
         return $aguinaldos;
+    }
+
+    //imprimir planilla de aguinaldos 
+    public function generatePDF()
+    {
+        $empleados = Empleados::all();
+        $aguinaldos = $this->calcularAguinaldos();
+
+        //Para el nombre
+        $fechaActual = date('d-m-Y');
+        $nombreArchivo = 'aginaldos_' . $fechaActual . '.pdf';
+
+
+        //crear nueva instancia de pdf
+        $pdf = new TCPDF();
+        //establecer el contenido del documento
+        $html = view('pdf.planillaAguinaldos', compact('empleados','aguinaldos'))->render();
+
+        $pdf::SetPageOrientation('L');
+
+        //establecer la configuracion del documento PDF
+        $pdf::SetCreator('Tu Aplicacion');
+        $pdf::SetAuthor('Tu Nombre');
+        $pdf::SetTitle('Reporte de Empleados');
+        $pdf::SetHeaderData('', '', 'Datos de empleados', '');
+
+        //Agregar una nueva pagina
+        $pdf::AddPage();
+
+        //escribir el contenido HTML en el PDF
+        $pdf::writeHTML($html, true, false, true, false, '');
+
+        //generar y descargar el archivo pdf
+        $pdf::Output($nombreArchivo, 'D');
     }
 
 }

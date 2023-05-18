@@ -43,3 +43,5 @@ Route::get('/generate-boletas', [App\Http\Controllers\PrestacionesController::cl
 
 Route::get('/vacaciones', [App\Http\Controllers\vacacionesController::class, 'index'])->name('vacaciones');
 Route::get('/aguinaldos', [App\Http\Controllers\AguinaldosController::class, 'index'])->name('aguinaldos');
+
+Route::get('/pdf-aguinaldos', [App\Http\Controllers\AguinaldosController::class, 'generatePDF'])->name('pdf-aguinaldos');

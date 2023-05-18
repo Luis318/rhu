@@ -9,7 +9,7 @@
                     <div class="container d-flex justify-content-end mb-3">
                         <a href="#" name="boletas" id="boletas" class="btn btn-primary mx-3"><i
                             class="">Imprimir boletas</i></a>
-                        <a href="#" name="create" id="create" class="btn btn-primary"><i
+                        <a href="{{ route('pdf-aguinaldos') }}" name="create" id="create" class="btn btn-primary"><i
                                 class="">Imprimir planilla</i></a>
                     </div>
                     <div class="container-xl">
