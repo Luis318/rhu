@@ -10,9 +10,11 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-md-12 py-md-5">
                     <div class="card">
-                        <form action="">
+                        <form method="POST" action="{{ route('boleta_unica') }}">
+                            @csrf
                             <div class="card-header d-flex justify-content-end">
-                                <button class="btn btn-success" type="button">Imprimir boleta</button>
+                                <button href="" class="btn btn-success" type="submit">Imprimir boleta</button>
+                                <input type="hidden" value="{{$empleado->id}}" name="idEmpleado" id="inEmpleado">
                             </div>
                             <div class="card-body">
 

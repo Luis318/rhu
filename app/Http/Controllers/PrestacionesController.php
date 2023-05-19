@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DataTables;
 use Elibyy\TCPDF\Facades\TCPDF;
+use Illuminate\Support\Facades\View;
+use Dompdf\Dompdf;
 
 class PrestacionesController extends Controller
 {
@@ -310,6 +312,30 @@ class PrestacionesController extends Controller
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'inline; filename="empleados.pdf"'
         ]);
+    }
+
+    //generar boleta de pago de un solo empleado
+    public function boletaIndividual(Request $request){
+        $empleado = Empleados::find($request->idEmpleado);
+        //dd($request);
+        $isssEmp = $this->calcularIsss();
+        $afpEmp = $this->calcularAfp();
+        $renta = $this->calculaRenta();
+        $pago = $this->calcularSalario();
+
+        $html = View::make('pdf.boletaIndividual', compact('empleado', 'isssEmp', 'afpEmp', 'renta', 'pago'))->render();
+
+        //crear instancia de DOMPDF
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+
+        //generar el pdf
+        $dompdf->render();
+
+        //descargar el pdf 
+        return $dompdf->stream('boleta_pago.pdf');
+
     }
 
     public function calcularSalario(){

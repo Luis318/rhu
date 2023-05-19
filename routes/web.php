@@ -61,3 +61,5 @@ Route::get('/aguinaldos', [App\Http\Controllers\AguinaldosController::class, 'in
 
 Route::get('/pdf-aguinaldos', [App\Http\Controllers\AguinaldosController::class, 'generatePDF'])->name('pdf-aguinaldos');
 Route::get('/aguinaldos', [App\Http\Controllers\AguinaldosController::class, 'index'])->name('aguinaldos');
+
+Route::post('/boletaUnica', [App\Http\Controllers\PrestacionesController::class, 'boletaIndividual'])->name('boleta_unica');
