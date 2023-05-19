@@ -211,7 +211,10 @@ class PrestacionesController extends Controller
         $pdf::SetCreator('Tu Aplicacion');
         $pdf::SetAuthor('Tu Nombre');
         $pdf::SetTitle('Reporte de Empleados');
-        $pdf::SetHeaderData('', '', 'Datos de empleados', '');
+
+        //Agregar encabezado 
+        $logo = public_path('inicio/assets/img/login.jpeg');
+        $pdf::SetHeaderData($logo, 30, 'Datos de empleados', '', array(0,0,0), array(255, 255,255));
 
         //Agregar una nueva pagina
         $pdf::AddPage();

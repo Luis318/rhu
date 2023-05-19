@@ -61,10 +61,10 @@ class AguinaldosController extends Controller
 
         foreach($empleados as $empleado){
             $fechaContratacion = Carbon::parse($empleado->fechaContratacion);
-            $antiguedad = $fechaContratacion->diffInYears(Carbon::now());
+            $antiguedad = $fechaContratacion->diffInYears(Carbon::now()) . ' años';
 
-            if($aniosTrabajados < 1){
-                $antiguedad = $fechaContratacion->diffInMonths(Carbon::now());
+            if($antiguedad < 1){
+                $antiguedad = $fechaContratacion->diffInMonths(Carbon::now()).' meses';
                 //dd($antiguedad);
             }
             $aniosTrabajados[$empleado->id] = $antiguedad; 
