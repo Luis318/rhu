@@ -7,6 +7,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>GRUPO 03 - RHU115</title>
+    <title></title>
     <link rel="icon" type="image/x-icon" href="{{ asset('inicio/assets/favicon.ico') }}" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>

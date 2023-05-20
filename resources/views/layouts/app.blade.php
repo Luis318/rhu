@@ -74,10 +74,10 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="#">Cuentas</a>
-                        <a class="collapse-item" href="#">Tipo de Cuentas</a>
-                        <a class="collapse-item" href="#">Detalles Catalogo</a>
+                        <h6 class="collapse-header">Control</h6>
+                        <a class="collapse-item" href="{{route('ausencias')}}">Ausencias</a>
+                        <a class="collapse-item" href="{{route('incapacidad')}}">Incapacidades</a>
+                        {{-- <a class="collapse-item" href="#">Detalles Catalogo</a> --}}
                     </div>
                 </div>
             </li>
@@ -92,8 +92,8 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Analisis</h6>
-                        <a class="collapse-item" href="#">Analisis H y V</a>
+                        <h6 class="collapse-header">DATOS DE EMPLEADO</h6>
+                        <a class="collapse-item" href="{{route('empleado')}}">Nuevo Empleado</a>
                         {{-- <a class="collapse-item" href="utilities-border.html">Borders</a>
                         <a class="collapse-item" href="utilities-animation.html">Animations</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a> --}}
@@ -130,6 +130,35 @@
                     </div>
                 </div>
             </li>
+            
+            <!-- Control asistencia incapacidades -->
+            {{-- <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
+                    aria-expanded="true" aria-controls="collapsePages1">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Control Laboral</span>
+                </a>
+                <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="#">Ausencias</a>
+                        <a class="collapse-item" href="#">Incapacidades</a>
+                    </div>
+                </div>
+            </li> --}}
+
+                        <!-- Ingreso de Nuevo Empleado -->
+                        {{-- <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
+                    aria-expanded="true" aria-controls="collapsePages2">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Empleados</span>
+                </a>
+                <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="#">Registrar Nuevo Empleado</a>
+                    </div>
+                </div>
+            </li> --}}
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
