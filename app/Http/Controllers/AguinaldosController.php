@@ -21,7 +21,7 @@ class AguinaldosController extends Controller
         if ($request->ajax()) {
             $aniosTrabajados = $this->calcularAntiguedadEmpleados();
             $aguinaldos = $this->calcularAguinaldos();
-            
+
             $data = Empleados::latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -42,10 +42,10 @@ class AguinaldosController extends Controller
                 ->addColumn('fechaContratacion', function ($row) {
                     return $row->fechaContratacion;
                 })
-                ->addColumn('antiguedad', function ($row) use($aniosTrabajados) {
+                ->addColumn('antiguedad', function ($row) use ($aniosTrabajados) {
                     return $aniosTrabajados[$row->id];
                 })
-                ->addColumn('aguinaldo', function ($row) use($aguinaldos) {
+                ->addColumn('aguinaldo', function ($row) use ($aguinaldos) {
                     return number_format($aguinaldos[$row->id], 2, '.', ',');
                 })
                 ->rawColumns(['acciones'])
@@ -55,45 +55,58 @@ class AguinaldosController extends Controller
 
     }
 
-    public function calcularAntiguedadEmpleados(){
+    public function calcularAntiguedadEmpleados()
+    {
         $empleados = Empleados::all();
         $aniosTrabajados = [];
 
-        foreach($empleados as $empleado){
+        foreach ($empleados as $empleado) {
             $fechaContratacion = Carbon::parse($empleado->fechaContratacion);
             $antiguedad = $fechaContratacion->diffInYears(Carbon::now()) . ' años';
 
-            if($antiguedad < 1){
-                $antiguedad = $fechaContratacion->diffInMonths(Carbon::now()).' meses';
+            if ($antiguedad < 1) {
+                $antiguedad = $fechaContratacion->diffInMonths(Carbon::now()) . ' meses';
                 //dd($antiguedad);
             }
-            $aniosTrabajados[$empleado->id] = $antiguedad; 
+            $aniosTrabajados[$empleado->id] = $antiguedad;
         }
         return $aniosTrabajados;
     }
 
-    public function calcularAguinaldos(){
+    public function calcularAguinaldos()
+    {
         $empleados = Empleados::all();
         $aguinaldos = [];
-        $aniosTrabajados = [];
 
-        foreach($empleados as $empleado){
+        foreach ($empleados as $empleado) {
+            $mesesTrabajados = $this->calcularMesesTrabajados($empleado->fechaContratacion);
+            $aguinaldo = 0;
 
-            $aniosTrabajados[$empleado->id] = $this->calcularAntiguedadEmpleados();
-            //dd($aniosTrabajados[$empleado->id]);
-            if($aniosTrabajados[$empleado->id] > 1 && $aniosTrabajados[$empleado->id] < 3){
-                $pago = ($empleado->salario_base/30) * 15;
-                $aguinaldos[$empleado->id] = $pago;
-            }elseif($aniosTrabajados[$empleado->id] > 3 && $aniosTrabajados[$empleado->id] < 10){
-                $pago = ($empleado->salario_base/30) * 19;
-                $aguinaldos[$empleado->id] = $pago;
-            }elseif($aniosTrabajados[$empleado->id] > 10){
-                $pago = ($empleado->salario_base/30) * 21;
-                $aguinaldos[$empleado->id] = $pago;
+            if ($mesesTrabajados < 12) {
+                $aguinaldo = ((($empleado->salario_base / 30) * 15)/365) * ($mesesTrabajados * 30);
+            } elseif ($mesesTrabajados >= 12 && $mesesTrabajados < 36) {
+                $aguinaldo = ($empleado->salario_base / 30) * 15;
+            } elseif ($mesesTrabajados >= 36 && $mesesTrabajados < 120) {
+                $aguinaldo = ($empleado->salario_base / 30) * 19;
+            } elseif ($mesesTrabajados >= 120) {
+                $aguinaldo = ($empleado->salario_base / 30) * 21;
             }
 
+            $aguinaldos[$empleado->id] = $aguinaldo;
         }
+
         return $aguinaldos;
+    }
+
+    private function calcularMesesTrabajados($fechaContratacion)
+    {
+        $fechaContratacion = new \DateTime($fechaContratacion);
+        $fechaActual = new \DateTime();
+
+        $intervalo = $fechaContratacion->diff($fechaActual);
+        $meses = ($intervalo->format('%y') * 12) + $intervalo->format('%m');
+
+        return $meses;
     }
 
     //imprimir planilla de aguinaldos 
@@ -110,7 +123,7 @@ class AguinaldosController extends Controller
         //crear nueva instancia de pdf
         $pdf = new TCPDF();
         //establecer el contenido del documento
-        $html = view('pdf.planillaAguinaldos', compact('empleados','aguinaldos'))->render();
+        $html = view('pdf.planillaAguinaldos', compact('empleados', 'aguinaldos'))->render();
 
         $pdf::SetPageOrientation('L');
 
