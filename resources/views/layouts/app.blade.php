@@ -130,6 +130,35 @@
                     </div>
                 </div>
             </li>
+            
+            <!-- Control asistencia incapacidades -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
+                    aria-expanded="true" aria-controls="collapsePages1">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Control Laboral</span>
+                </a>
+                <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('ausencias')}}">Ausencias</a>
+                        <a class="collapse-item" href="{{route('incapacidad')}}">Incapacidades</a>
+                    </div>
+                </div>
+            </li>
+
+                        <!-- Ingreso de Nuevo Empleado -->
+                        <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
+                    aria-expanded="true" aria-controls="collapsePages2">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Empleados</span>
+                </a>
+                <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('empleado')}}">Registrar Nuevo Empleado</a>
+                    </div>
+                </div>
+            </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">

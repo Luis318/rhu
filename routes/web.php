@@ -28,4 +28,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/salarios', [App\Http\Controllers\PrestacionesController::class, 'index'])->name('salarios');
 Route::get('/descuentos', [App\Http\Controllers\PrestacionesController::class, 'caclularDescuentos'])->name('descuentos');
-
+Route::get('/incapacidad', [App\Http\Controllers\incapacidadController::class, 'incapacidad'])->name('incapacidad');
+Route::get('/controlausencias', [App\Http\Controllers\ausenciasController::class, 'ausencias'])->name('ausencias');
+Route::get('/empleado', [App\Http\Controllers\empleadoController::class, 'empleado'])->name('empleado');
