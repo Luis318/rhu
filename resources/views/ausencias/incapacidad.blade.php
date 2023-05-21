@@ -1,97 +1,115 @@
 @extends('layouts.app')
 @section('content')
 
-<head>
-
-</head>
-
-<body>
-    <div class="row-4">
-        <div class="container1">
-            <div class="p-2 bg primary">
-                <p class="text-center">
-                <h2><strong>Control Para Incapacidades Laborales: </strong></h2>
-                </p>
-            </div>
+<div class="container-xl">
+    <div class="d-sm-flex">
+        <div class="col-sm-12 text text-center">
+            <h2 class=""><strong>Control de Incapacidades Laborales</strong></h2>
         </div>
+    </div>
+    <div class="col-sm-12 text-center">
+        <img src="https://img.freepik.com/vector-gratis/grupo-personal-medico-que-lleva-iconos-relacionados-salud_53876-43071.jpg?w=360"
+            alt="imagen form">
+    </div>
+    <div class="row justify-conten-center">
+        <div class="container-xl">
+            <div class="card">
+                <div>
+                    <h4 class="text text-center mt-3">Datos del empleado</h4>
+                </div>
+                <form action="">
+                    @csrf
+                    <div class="card-body">
+                        <div class="md-3 row">
+                            <div class="col-sm-4">
+                                <label class="form-label">Empleado</label>
+                                <select class="form-control" id="id_empleado" name="id_empleado"
+                                    onchange="showEmpleado()">
+                                    <option selected="selected">Seleccione un empleado</option>
+                                    @foreach ($empleados as $empleado)
+                                        <option value="{{ $empleado->id }}">{{ $empleado->primerNombre }}
+                                            {{ $empleado->primerApellido }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="form-label" for="dui">DUI</label>
+                                <input class="form-control" type="text" id="dui" name="dui" readonly>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="form-label" for="puesto">Puesto</label>
+                                <input class="form-control" type="text" id="puesto" name="puesto" readonly>
+                            </div>
+                        </div>
 
-        <div class="imagen">
-            <img src="https://img.freepik.com/vector-gratis/grupo-personal-medico-que-lleva-iconos-relacionados-salud_53876-43071.jpg?w=360"
-                class="img-fluid; mx-auto d-block" alt="...">
-        </div>
+                        <div class="md-3 row pt-3">
+                            <div class="col-sm-4">
+                                <label class="form-label" for="fecha">Fecha</label>
+                                <input class="form-control" type="date" id="fecha" name="fecha">
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="form-label" for="inicio">Fecha de inicio</label>
+                                <input class="form-control" type="date" id="inicio" name="inicio">
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="form-label" for="fin">fecha de fin</label>
+                                <input class="form-control" type="date" id="fin" name="fin">
+                            </div>
+                        </div>
 
+                        <div class="md-3 row pt-3">
+                            <div class="col-sm-6">
+                                <label class="form-label">Tipo de Incapacidad</label>
+                                <select class="form-control" id="tipo_incapacidad" name="tipo_incapacidad">
+                                    <option selected>Seleccione un tipo</option>
+                                    <option value="Enfermedad Común">Enfermedad Común</option>
+                                    <option value="Licencia de Maternidad">Licencia de Maternidad</option>
+                                    <option value="Licencia de Paternidad">Licencia de Paternidad</option>
+                                    <option value="Accidente Laboral">Accidente Laboral</option>
+                                    <option value="Enfermedad Laboral">Enfermedad Laboral</option>
+                                    <option value="Invalidez Parcial">Invalidez Parcial</option>
+                                    <option value="Gran Invalidez">Gran Invalidez</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label" for="comprobante">Adjuntar comprobante</label>
+                                <input class="form-control-file" type="file" id="comprobante" name="comprobante">
+                            </div>
+                        </div>
 
-        <div class="formulario">
-            <div class="col">
-                <div class="mb-3">
-                    <div class="row g-3">
-                        <div class="col-4">
-                            <input type="text" class="form-control" placeholder="Nombres" aria-label="Nombre" height="100px">
-                        </div>
-                        <div class="col-4">
-                            <input type="text" class="form-control" placeholder="Apellidos" aria-label="Apellido">
+                        <div class="row pt-3 pb-3">
+                            <div class="col-sm-12">
+                                <label class="folm-label" for="motivo">Motivo de la incapacidad</label>
+                                <textarea class="form-control" name="motivo" id="motivo" cols="30" rows="3"></textarea>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-5">
-                        <div class="mb">
-                            <label for="exampleFormControlInput1" class="form-label">Puesto de Trabajo: </label>
-                            <input class="form-control" type="text" placeholder="" aria-label="default input example">
+                    <div class="card-footer">
+                        <input type="hidden" name="idEmpleado" id="idEmpleado" value="{{ $empleado->id }}">
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-success" type="success" id="agregar">Agregar</button>
                         </div>
                     </div>
-                </div>
-                <label for="exampleFormControlInput1" class="form-label">Tipo de Incapacidad: </label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                    <option selected>Seleccione Una Opc</option>
-                    <option value="1">Enfermedad Común</option>
-                    <option value="2">Licencia de Maternidad</option>
-                    <option value="3">Licencia de Paternidad</option>
-                    <option value="3">Accidente Laboral</option>
-                    <option value="3">Enfermedad Laboral</option>
-                    <option value="3">Invalidez Parcial</option>
-                    <option value="3">Gran Invalidez</option>
-                </select>
-                <div class="col-5">
-                    <div class="mb">
-                        <label for="exampleFormControlInput1" class="form-label">Otro Tipo de Incapacidad: </label>
-                        <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                    </div>
-                </div>
-                <div class="col-8">
-                    <div class="mb">
-                        <label for="exampleFormControlTextarea1" class="form-label">Comentario Sobre Incapacidad:
-                        </label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="col-5">
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Adjunte Comprobante: </label>
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label"></label>
-                            <input class="form-control" type="file" id="formFile">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="mb">
-                        <label for="exampleFormControlInput1" class="form-label">Fecha Desde: </label>
-                        <input type="date" class="form-control" weight="100px">
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="mb">
-                        <label for="exampleFormControlInput1" class="form-label">Fecha de Hasta: </label>
-                        <input type="date" class="form-control" weight="100px">
-                    </div>
-                </div>
-                <hr>
-                <div class="col-12" height=100px;>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
+<script>
+     function showEmpleado() {
+            var empleados = {!! json_encode($empleados) !!};
+            var idEmpleado = document.getElementById('id_empleado').value;
+            var empleado = empleados.find(function(empleado) {
+                return empleado.id == idEmpleado;
+            });
 
-
-</body>
+            if (empleado) {
+                document.getElementById('dui').value = empleado.dui;
+                document.getElementById('puesto').value = empleado.puesto;
+            } else {
+                document.getElementById('dui').value = '';
+                document.getElementById('puesto').value = '';
+            }
+        }
+</script>
 @endsection
