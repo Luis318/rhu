@@ -40,7 +40,7 @@
 
 <body>
     <div class="header">
-        <h1 class="company-name">Booster</h1>
+        <h1 class="company-name">Booster SA de CV</h1>
         <p>Aguinaldos {{ date('Y') }}</p>
     </div>
     <table>
@@ -64,6 +64,6 @@
         </tbody>
     </table>
     <footer>
-        <p>&copy; 2023 BOOSTER. Todos los derechos reservados.</p>
+        <p>&copy; 2023 BOOSTER SA de CV - Todos los derechos reservados.</p>
     </footer>
 </body>

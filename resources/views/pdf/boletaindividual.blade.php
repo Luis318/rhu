@@ -32,13 +32,13 @@
 <body>
     <div class="container">
         {{-- <img src="{{ asset('inicio/assets/img/login.jpeg') }}" alt="logo" class="logo"> --}}
-        <h1>Boleta de pago</h1>
+        <h1>Boleta de Pago</h1>
         <h3>Datos personales</h3>
         <ul>
-            <li>Nombre empleado: {{ isset($empleado->primerNombre) ? $empleado->primerNombre : '' }}
+            <li>Nombre del Empleado/a: {{ isset($empleado->primerNombre) ? $empleado->primerNombre : '' }}
                 {{ $empleado->segundoNombre }} {{ $empleado->primerApellido }} {{ $empleado->segundoApellido }}</li>
             <li>DUI: {{ $empleado->dui }}</li>
-            <li>Salario base: {{ number_format($empleado->salario_base, 2, '.', ',') }}</li>
+            <li>Salario Base: {{ number_format($empleado->salario_base, 2, '.', ',') }}</li>
         </ul>
 
         <h3>Descuentos</h3>
@@ -49,7 +49,7 @@
         </ul>
 
         <p>
-            Total a pagar: {{ number_format($pago[$empleado->id], 2, '.', ',') }}
+            Total a Pagar: {{ number_format($pago[$empleado->id], 2, '.', ',') }}
         </p>
     </div>
 </body>

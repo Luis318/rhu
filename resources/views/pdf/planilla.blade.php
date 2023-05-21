@@ -73,8 +73,8 @@
         }
     </style>
     <div class="header">
-        <h1 class="company-name">Booster</h1>
-        <p>Planilla de empleados {{ date('m-Y') }}</p>
+        <h1 class="company-name">Booster SA de CV</h1>
+        <p>Planilla de Empleados {{ date('m-Y') }}</p>
     </div>
     <table>
         <thead>
@@ -104,7 +104,7 @@
         </tbody>
     </table>
     <footer>
-        <p>&copy; 2023 BOOSTER. Todos los derechos reservados.</p>
+        <p>&copy; 2023 BOOSTER SA de CV - Todos los derechos reservados.</p>
     </footer>
 </body>
 
