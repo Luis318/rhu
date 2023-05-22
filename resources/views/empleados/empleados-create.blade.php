@@ -55,19 +55,19 @@
                                         <label class="form-label">Estado Civil</label>
                                         <select class="form-control" id="estadoCivil" name="estadoCivil">
                                             <option selected>Seleccione Estado Civil</option>
-                                            <option value="1">Soltero</option>
-                                            <option value="2">Divorciado</option>
-                                            <option value="3">Viudo</option>
-                                            <option value="4">Casado</option>
+                                            <option value="Soltero">Soltero</option>
+                                            <option value="Divorciado">Divorciado</option>
+                                            <option value="Viudo">Viudo</option>
+                                            <option value="Casado">Casado</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="form-label">Sexo</label>
                                         <select class="form-control" id="sexo" name="sexo">
                                             <option selected>Seleccione el Sexo</option>
-                                            <option value="1">Femenino</option>
-                                            <option value="2">Masculino</option>
-                                            <option value="3">Otro</option>
+                                            <option value="F">Femenino</option>
+                                            <option value="M">Masculino</option>
+                                            <option value="O">Otro</option>
                                                 </select>
                                         </select>
                                     </div>
