@@ -25,11 +25,12 @@ return new class extends Migration
             $table->date('fechaContratacion');
             $table->string('pasaporte',20);
             $table->string('carnetResidencia',20);
-            $table->string('estadoCivil',200);
-            $table->string('sexo',50);
+            $table->integer('estadoCivil',200);
+            $table->integer('sexo');
             $table->string('telefono',20);
             $table->string('celular',20);
             $table->string('estado');
+            $table->string('puesto');
             $table->string('email')->unique();
             $table->foreignId('areaPuesto_id')->constrained('area_puestos')->onDelete('cascade');
             $table->timestamps();

@@ -84,21 +84,10 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="{{route('empleados-list')}}">
                     <i class="bi bi-person-bounding-box"></i>
                     <span>Empleados</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">DATOS DE EMPLEADO</h6>
-                        <a class="collapse-item" href="{{route('empleado')}}">Nuevo Empleado</a>
-                        {{-- <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a> --}}
-                    </div>
-                </div>
             </li>
 
             <!-- Divider -->

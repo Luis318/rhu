@@ -31,7 +31,7 @@
 
 <body>
     <div class="container">
-        {{-- <img src="{{ asset('inicio/assets/img/login.jpeg') }}" alt="logo" class="logo"> --}}
+        <img src="https://scontent.fsal11-1.fna.fbcdn.net/v/t39.30808-6/314473249_782859349815741_2471540780597430820_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=EcIBAqw2JtEAX9tVpG5&_nc_ht=scontent.fsal11-1.fna&oh=00_AfBHh1Pfhd07Ki7x34XwbHnXvbb1XHcQB-5ZDM8Ru4bL5Q&oe=646D58A5" alt="logo" class="logo">
         <h1>Boleta de pago</h1>
         <h3>Datos personales</h3>
         <ul>

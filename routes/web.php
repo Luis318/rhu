@@ -41,6 +41,12 @@ Route::get('/vacaciones-view/{id}', [App\Http\Controllers\vacacionesController::
 Route::get('/vacaciones-update/{id}', [App\Http\Controllers\vacacionesController::class, 'vacacionesUpdate'])->name('vacaciones-update');
 Route::post('/vacaciones-store-update', [App\Http\Controllers\vacacionesController::class, 'vacacionesStoreUpdate'])->name('vacaciones-store-update');
 
+//Empleados
+Route::get('/empleados-list', [App\Http\Controllers\empleadoController::class, 'empleadosList'])->name('empleados-list');
+Route::get('/empleados-create', [App\Http\Controllers\empleadoController::class, 'empleadosCreate'])->name('empleados-create');
+Route::post('/empleados-strore', [App\Http\Controllers\empleadoController::class, 'empleadosStore'])->name('empleados-store');
+Route::get('/empleados-view/{id}', [App\Http\Controllers\empleadoController::class, 'empleadosView'])->name('empleados-view');
+
 Route::get('/salarios', [App\Http\Controllers\PrestacionesController::class, 'index'])->name('salarios');
 Route::get('/descuentos', [App\Http\Controllers\PrestacionesController::class, 'caclularDescuentos'])->name('descuentos');
 
@@ -65,4 +71,4 @@ Route::get('/aguinaldos', [App\Http\Controllers\AguinaldosController::class, 'in
 Route::post('/boletaUnica', [App\Http\Controllers\PrestacionesController::class, 'boletaIndividual'])->name('boleta_unica');
 Route::get('/incapacidad', [App\Http\Controllers\incapacidadController::class, 'incapacidad'])->name('incapacidad');
 Route::get('/controlausencias', [App\Http\Controllers\ausenciasController::class, 'ausencias'])->name('ausencias');
-Route::get('/empleado', [App\Http\Controllers\empleadoController::class, 'empleado'])->name('empleado');
+
