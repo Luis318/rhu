@@ -47,28 +47,42 @@ Route::get('/empleados-create', [App\Http\Controllers\empleadoController::class,
 Route::post('/empleados-strore', [App\Http\Controllers\empleadoController::class, 'empleadosStore'])->name('empleados-store');
 Route::get('/empleados-view/{id}', [App\Http\Controllers\empleadoController::class, 'empleadosView'])->name('empleados-view');
 
+//planilla
 Route::get('/salarios', [App\Http\Controllers\PrestacionesController::class, 'index'])->name('salarios');
 Route::get('/descuentos', [App\Http\Controllers\PrestacionesController::class, 'caclularDescuentos'])->name('descuentos');
 
 Route::get('/boleta/{empleado_id}', [App\Http\Controllers\PrestacionesController::class, 'verBoleta'])->name('boleta_empleado');
+Route::get('/generate-boletas', [App\Http\Controllers\PrestacionesController::class, 'boletasMultiples'])->name('generate-boletas');
+Route::get('/generate-pdf', [App\Http\Controllers\PrestacionesController::class, 'generatePDF'])->name('generate-pdf');
+Route::post('/boletaUnica', [App\Http\Controllers\PrestacionesController::class, 'boletaIndividual'])->name('boleta_unica');
 
+//horas extras
 Route::get('/horasExtras/{empleado_id}', [App\Http\Controllers\HorasController::class, 'viewHorasExtras'])->name('horas_extras');
 
 Route::get('/horas', [App\Http\Controllers\HorasController::class, 'index'])->name('horas');
 
 Route::post('guardar_horas_extras', [App\Http\Controllers\HorasController::class, 'store'])->name('guardar_horas_extras');
 
-Route::get('/generate-pdf', [App\Http\Controllers\PrestacionesController::class, 'generatePDF'])->name('generate-pdf');
 
-Route::get('/generate-boletas', [App\Http\Controllers\PrestacionesController::class, 'boletasMultiples'])->name('generate-boletas');
 
 Route::get('/vacaciones', [App\Http\Controllers\vacacionesController::class, 'index'])->name('vacaciones');
+
+//Aguinaldos
 Route::get('/aguinaldos', [App\Http\Controllers\AguinaldosController::class, 'index'])->name('aguinaldos');
 
 Route::get('/pdf-aguinaldos', [App\Http\Controllers\AguinaldosController::class, 'generatePDF'])->name('pdf-aguinaldos');
 Route::get('/aguinaldos', [App\Http\Controllers\AguinaldosController::class, 'index'])->name('aguinaldos');
 
-Route::post('/boletaUnica', [App\Http\Controllers\PrestacionesController::class, 'boletaIndividual'])->name('boleta_unica');
+//Incapacidades
 Route::get('/incapacidad', [App\Http\Controllers\incapacidadController::class, 'incapacidad'])->name('incapacidad');
 Route::get('/controlausencias', [App\Http\Controllers\ausenciasController::class, 'ausencias'])->name('ausencias');
 
+Route::get('/empleado', [App\Http\Controllers\empleadoController::class, 'empleado'])->name('empleado');
+
+//control de asistencias
+Route::get('/controlausencias', [App\Http\Controllers\ausenciasController::class, 'ausencias'])->name('ausencias');
+Route::post('/agregarAsistencia', [App\Http\Controllers\ausenciasController::class, 'store'])->name('agregarasistencia');
+Route::get('/verasistencia', [App\Http\Controllers\ausenciasController::class, 'verAsistencias'])->name('ver_asistencia');
+
+//control de incapacidades
+Route::post('/agregarIncapacidad', [App\Http\Controllers\incapacidadController::class, 'store'])->name('agregarincapacidad');

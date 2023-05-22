@@ -24,6 +24,10 @@ class Empleados extends Model
         return $empleados;
     }
 
+    public function asistencias(){
+        return $this->hasMany(Asistencia::class);
+    }
+
     public function getSalario(){
         $salarioEmpleados = Empleados::all();
         return $salarioEmpleados;
