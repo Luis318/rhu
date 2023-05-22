@@ -76,6 +76,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Control</h6>
                         <a class="collapse-item" href="{{route('ausencias')}}">Ausencias</a>
+                        <a class="collapse-item" href="{{route('ver_asistencia')}}">Ver asistencias</a>
                         <a class="collapse-item" href="{{route('incapacidad')}}">Incapacidades</a>
                         {{-- <a class="collapse-item" href="#">Detalles Catalogo</a> --}}
                     </div>

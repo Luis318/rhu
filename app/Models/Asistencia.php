@@ -12,4 +12,12 @@ class Asistencia extends Model
     public function empleados(){
         return $this->belongsTo(Empleados::class);
     }
+
+    public function empleadosAsistencia(){
+        $resultado = Asistencia::join("empleados", "empleados.id", "=", "asistencias.id_empleado")
+            ->select('*')
+            ->get();
+
+        return $resultado;
+    }
 }

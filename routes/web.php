@@ -74,6 +74,7 @@ Route::get('/empleado', [App\Http\Controllers\empleadoController::class, 'emplea
 //control de asistencias
 Route::get('/controlausencias', [App\Http\Controllers\ausenciasController::class, 'ausencias'])->name('ausencias');
 Route::post('/agregarAsistencia', [App\Http\Controllers\ausenciasController::class, 'store'])->name('agregarasistencia');
+Route::get('/verasistencia', [App\Http\Controllers\ausenciasController::class, 'verAsistencias'])->name('ver_asistencia');
 
 //control de incapacidades
 Route::post('/agregarIncapacidad', [App\Http\Controllers\incapacidadController::class, 'store'])->name('agregarincapacidad');
