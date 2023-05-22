@@ -86,3 +86,4 @@ Route::get('/verasistencia', [App\Http\Controllers\ausenciasController::class, '
 
 //control de incapacidades
 Route::post('/agregarIncapacidad', [App\Http\Controllers\incapacidadController::class, 'store'])->name('agregarincapacidad');
+Route::get('/ver_incapacidad', [App\Http\Controllers\incapacidadController::class, 'verIncapacidades'])->name('ver_incapacidad');

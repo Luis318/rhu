@@ -78,6 +78,7 @@
                         <a class="collapse-item" href="{{route('ausencias')}}">Ausencias</a>
                         <a class="collapse-item" href="{{route('ver_asistencia')}}">Ver asistencias</a>
                         <a class="collapse-item" href="{{route('incapacidad')}}">Incapacidades</a>
+                        <a class="collapse-item" href="{{route('ver_incapacidad')}}">Ver Incapacidades</a>
                         {{-- <a class="collapse-item" href="#">Detalles Catalogo</a> --}}
                     </div>
                 </div>

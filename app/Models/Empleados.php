@@ -33,6 +33,10 @@ class Empleados extends Model
         return $salarioEmpleados;
     }
 
+    public function AusenciaIncapacidades(){
+        return $this->hasMany(AusenciaIncapacidades::class);
+    }
+
     public function aniosTrabajados(){
 
         $fechaContratacion = $this->fechaContratacion;
