@@ -71,6 +71,9 @@ Route::get('/aguinaldos', [App\Http\Controllers\AguinaldosController::class, 'in
 Route::get('/incapacidad', [App\Http\Controllers\incapacidadController::class, 'incapacidad'])->name('incapacidad');
 Route::get('/empleado', [App\Http\Controllers\empleadoController::class, 'empleado'])->name('empleado');
 
-//controsl de asistencias
+//control de asistencias
 Route::get('/controlausencias', [App\Http\Controllers\ausenciasController::class, 'ausencias'])->name('ausencias');
 Route::post('/agregarAsistencia', [App\Http\Controllers\ausenciasController::class, 'store'])->name('agregarasistencia');
+
+//control de incapacidades
+Route::post('/agregarIncapacidad', [App\Http\Controllers\incapacidadController::class, 'store'])->name('agregarincapacidad');

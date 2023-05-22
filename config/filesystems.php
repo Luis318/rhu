@@ -36,6 +36,11 @@ return [
             'throw' => false,
         ],
 
+        'incapacidad' =>[
+            'driver' => 'local',
+            'root'  => storage_path('app/public/incapacidad'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

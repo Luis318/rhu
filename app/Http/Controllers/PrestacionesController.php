@@ -258,7 +258,7 @@ class PrestacionesController extends Controller
 
             // Establece el contenido HTML para el empleado actual
             $html = '<div style="text-align: center;">';
-            $html .= '<h1>Empresa RHU115</h1>';
+            $html .= '<h1>BOOSTER S.A de C.V.</h1>';
             $html .= '<h2>Boleta de pago de ' . $empleado->primerNombre . '</h2>';
             $html .= '<h3>Informacion del empleado</h3>';
             $html .= '<ul>';

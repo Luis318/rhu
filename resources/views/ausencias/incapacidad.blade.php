@@ -17,13 +17,13 @@
                 <div>
                     <h4 class="text text-center mt-3">Datos del empleado</h4>
                 </div>
-                <form action="">
+                <form action="{{route('agregarincapacidad')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="md-3 row">
                             <div class="col-sm-4">
                                 <label class="form-label">Empleado</label>
-                                <select class="form-control" id="id_empleado" name="id_empleado"
+                                <select required class="form-control" id="id_empleado" name="id_empleado"
                                     onchange="showEmpleado()">
                                     <option selected="selected">Seleccione un empleado</option>
                                     @foreach ($empleados as $empleado)
@@ -45,22 +45,22 @@
                         <div class="md-3 row pt-3">
                             <div class="col-sm-4">
                                 <label class="form-label" for="fecha">Fecha</label>
-                                <input class="form-control" type="date" id="fecha" name="fecha">
+                                <input required class="form-control" type="date" id="fecha" name="fecha">
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-label" for="inicio">Fecha de inicio</label>
-                                <input class="form-control" type="date" id="inicio" name="inicio">
+                                <input required class="form-control" type="date" id="inicio" name="inicio">
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-label" for="fin">fecha de fin</label>
-                                <input class="form-control" type="date" id="fin" name="fin">
+                                <input required class="form-control" type="date" id="fin" name="fin">
                             </div>
                         </div>
 
                         <div class="md-3 row pt-3">
                             <div class="col-sm-6">
                                 <label class="form-label">Tipo de Incapacidad</label>
-                                <select class="form-control" id="tipo_incapacidad" name="tipo_incapacidad">
+                                <select required class="form-control" id="tipo_incapacidad" name="tipo_incapacidad">
                                     <option selected>Seleccione un tipo</option>
                                     <option value="Enfermedad Común">Enfermedad Común</option>
                                     <option value="Licencia de Maternidad">Licencia de Maternidad</option>
@@ -73,14 +73,14 @@
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-label" for="comprobante">Adjuntar comprobante</label>
-                                <input class="form-control-file" type="file" id="comprobante" name="comprobante">
+                                <input required class="form-control-file" type="file" id="comprobante" name="comprobante">
                             </div>
                         </div>
 
                         <div class="row pt-3 pb-3">
                             <div class="col-sm-12">
                                 <label class="folm-label" for="motivo">Motivo de la incapacidad</label>
-                                <textarea class="form-control" name="motivo" id="motivo" cols="30" rows="3"></textarea>
+                                <textarea required class="form-control" name="motivo" id="motivo" cols="30" rows="3"></textarea>
                             </div>
                         </div>
                     </div>
