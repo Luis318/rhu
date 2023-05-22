@@ -21,14 +21,16 @@
                         <div class="card-body">
                             <table class="table table-striped table-bordered" id="inde_table">
                                 <thead>
-                                    <th scope="col">Primer Nombre</th>
-                                    <th scope="col">Segundo Nombre</th>
-                                    <th scope="col">Primer Apellido</th>
-                                    <th scope="col">Segundo Apellido</th>
+                                    <th scope="col">Nombres</th>
+                                    <th scope="col">Apellidos</th>
                                     <th scope="col">DUI</th>
+                                    <th scope="col">Fecha de ingreso</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Celular</th>
+                                    <th scope="col">Puesto</th>
                                     <th scope="col">Opciones</th>
                                 </thead>
-                                @foreach ($empleados as $empleado)
+                                {{-- @foreach ($empleados as $empleado)
                                     <tr>
                                         <td>{{$empleado->primerNombre}}</td>
                                         <td>{{$empleado->segundoNombre}}</td>
@@ -38,7 +40,7 @@
                                         <td><a type="button" name="create" id="create" href="{{ route('empleados-view',$empleado->id) }}" 
                                             class="btn btn-success" align="right"><i class="bi bi-eye-fill"></i></a></td>
                                     </tr>                                        
-                                @endforeach
+                                @endforeach --}}
                             </table>
                         </div>
                     </div>
@@ -47,4 +49,70 @@
         </div>
     </main>
 </div>
+<script>
+    $(document).ready(function() {
+        var tabla = new DataTable('#inde_table', {
+            processing: true,
+            serverSide: true,
+            searching: true,
+            serverSide: false,
+            autoWidth: false,
+            scrollX: true,
+            responsive: true,
+            ajax: "{{ route('empleados-list') }}",
+            columns: [{
+                    data: 'primerNombre',
+                    name: 'Nombres',
+                },
+                {
+                    data: 'primerApellido',
+                    name: 'Apellidos',
+                },
+                {
+                    data: 'dui',
+                    name: 'DUI',
+
+                },
+                {
+                    data: 'fechaContratacion',
+                    name: 'Fecha de ingreso',
+                },
+                {
+                    data: 'email',
+                    name: 'Email',
+                },
+                {
+                    data: 'celular',
+                    name: 'Celular',
+                },
+                {
+                    data: 'puesto',
+                    name: 'Puesto',
+                },
+                {
+                    data: 'acciones',
+                    orderable: false,
+                    searchable: false
+                },
+            ],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+            },
+            "order": [
+                [0, "asc"]
+            ],
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "Todos"]
+            ],
+        });
+        $('#buscarT').on('input', function() {
+            // Obtener el valor del campo de búsqueda
+            var valor = $(this).val();
+
+            // Realizar la búsqueda en la tabla y actualizarla
+            tabla.search(valor).draw();
+        });
+    });
+</script>
 @endsection

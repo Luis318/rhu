@@ -15,24 +15,24 @@ return new class extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
-            $table->string('primerNombre',400,null);
-            $table->string('segundoNombre',400,null);
-            $table->string('primerApellido',400,null);
-            $table->string('segundoApellido',400,null);
+            $table->string('primerNombre',400)->nullable();
+            $table->string('segundoNombre',400)->nullable();
+            $table->string('primerApellido',400)->nullable();
+            $table->string('segundoApellido',400)->nullable();
             $table->string('dui',30)->unique();
-            $table->decimal('salario_base',8,2,null);
-            $table->date('fechaNacimiento',null);
-            $table->date('fechaContratacion',null);
-            $table->string('pasaporte',20,null);
-            $table->string('carnetResidencia',20,null);
-            $table->integer('estadoCivil',200,null);
-            $table->integer('sexo',null);
-            $table->string('telefono',20,null);
-            $table->string('celular',20,null);
-            $table->string('estado',null);
-            $table->string('puesto',null);
-            $table->string('email',null)->unique();
-            $table->foreignId('areaPuesto_id')->constrained('area_puestos')->onDelete('cascade');
+            $table->decimal('salario_base',8,2)->nullable();
+            $table->date('fechaNacimiento')->nullable();
+            $table->date('fechaContratacion')->nullable();
+            $table->string('pasaporte',20)->nullable();
+            $table->string('carnetResidencia',20)->nullable();
+            $table->string('estadoCivil',200)->nullable();
+            $table->string('sexo')->nullable();
+            $table->string('telefono',20)->nullable();
+            $table->string('celular',20)->nullable();
+            $table->string('estado')->nullable();
+            $table->string('puesto')->nullable();
+            $table->string('email')->unique()->nullable();
+            // $table->foreignId('areaPuesto_id')->constrained('area_puestos')->onDelete('cascade')->nullable();
             $table->timestamps();
         });
     }
