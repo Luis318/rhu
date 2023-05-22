@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('indemnizaciones', function (Blueprint $table) {
             $table->id();
-            $table->string('categoria');
-            $table->decimal('monto',8,2);
-            $table->string('descripcion', 900);
+            $table->string('categoria',null);
+            $table->decimal('monto',8,2,null);
+            $table->string('descripcion', 900,null);
             $table->foreignId('id_empleado')->constrained('empleados')->onDelete('cascade');
-            $table->date('fecha_despido');
+            $table->date('fecha_despido',null);
             $table->timestamps();
         });
     }
