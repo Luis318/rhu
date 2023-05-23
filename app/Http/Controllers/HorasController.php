@@ -21,10 +21,11 @@ class HorasController extends Controller
     }
     public function index(Request $request)
     {
+        //dd( $data = $this->HorasExtras->empleadosHoras());
         //dd($request);
         //dd($this->calcularIsss());
         if ($request->ajax()) {
-            $data = Empleados::latest()->get();
+            $data = $this->HorasExtras->empleadosHoras();
             $horas = [];
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -38,10 +39,19 @@ class HorasController extends Controller
                     return number_format($row->salario_base, 2, '.', ',');
                 })
                 ->addcolumn('primerNombre', function ($row) {
-                    return $row->primerNombre . ' ' . $row->segundoNombre;
+                    return $row->primerNombre . ' ' . $row->primerApellido;
                 })
-                ->addColumn('horas', function ($row) use ($horas) {
-                    return isset( $horas[$row->id] ) ? number_format($horas[$row->id], 2, '.', ','): '';
+                ->addcolumn('cantidadDiurnas', function ($row) {
+                    return $row->cantidadDiurnas. ' Hrs';
+                })
+                ->addcolumn('cantidadDiurnasFeriado', function ($row) {
+                    return $row->cantidadDiurnasFeriado. ' Hrs';
+                })
+                ->addcolumn('cantidadNocturnas', function ($row) {
+                    return $row->cantidadNocturnas. ' Hrs';
+                })
+                ->addcolumn('cantidadNocturnasFeriado', function ($row) {
+                    return $row->cantidadNocturnasFeriado. ' Hrs';
                 })
                 ->rawColumns(['acciones'])
                 ->make(true);
@@ -64,7 +74,7 @@ class HorasController extends Controller
 
         //$this->insertarHorasExtras($request->empleado_id, $request->cdiurnas, $request->montodiurnas, $request->cnocturnas, $request->montonocturnas, $request->cnocturnasf, $request->montonocturnasf, $request->cdiurnasf, $request->montodiurnasf, $request->fecha);
 
-        return redirect()->route('home');
+        return redirect()->route('horas');
 
     }
 

@@ -11,4 +11,12 @@ class HorasExtras extends Model
     public function empleado(){
         return $this->belongTo(Empleado::class);
     }
+
+    public function empleadosHoras(){
+        $resultado = HorasExtras::join("empleados", "empleados.id", "=", "horas_extras.id_empleado")
+            ->select('*')
+            ->get();
+
+        return $resultado;
+    }
 }

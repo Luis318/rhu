@@ -23,7 +23,10 @@
                                         <th scope="col">Apellido</th>
                                         <th scope="col">DUI</th>
                                         <th scope="col">Salario</th>
-                                        <th scope="col">Horas extras</th>
+                                        <th scope="col">Horas Diurnas</th>
+                                        <th scope="col">Horas Diurnas F</th>
+                                        <th scope="col">Horas Nocturnas</th>
+                                        <th scope="col">Horas Nocturnas F</th>
                                         <th scope="col">Acciones</th>
                                     </thead>
 
@@ -72,8 +75,20 @@
                         //searchable: true
                     },
                     {
-                        data: 'horas',
-                        name: 'Horas extras',
+                        data: 'cantidadDiurnas',
+                        name: 'Horas Diurnas',
+                    },
+                    {
+                        data: 'cantidadDiurnasFeriado',
+                        name: 'Horas Diurnas F',
+                    },
+                    {
+                        data: 'cantidadNocturnas',
+                        name: 'Horas Nocturnas',
+                    },
+                    {
+                        data: 'cantidadNocturnasFeriado',
+                        name: 'Horas Nocturnas F',
                     },
                     {
                         data: 'acciones',
