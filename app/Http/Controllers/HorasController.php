@@ -31,7 +31,7 @@ class HorasController extends Controller
                 ->addIndexColumn()
                 ->addColumn('acciones', function ($row) {
 
-                    $btn = '<a href="' . route('horas_extras', $row->id) . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct"><i class="bi bi-eye-fill"></i></a>';
+                    $btn = '<a href="' . route('horas_extras', $row->id_empleado) . '" data-toggle="tooltip"  data-id="' . $row->id_empleado . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct"><i class="bi bi-eye-fill"></i></a>';
 
                     return $btn;
                 })
